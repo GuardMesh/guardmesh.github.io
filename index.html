@@ -429,6 +429,19 @@
     section { padding: 4rem 0; }
     .about-stats { grid-template-columns: 1fr 1fr; }
   }
+ .contact-buttons { display: flex; flex-direction: column; gap: 1rem; }
+  .contact-btn { display: flex; align-items: center; gap: 1.2rem; padding: 1.2rem 1.5rem; border-radius: 12px; border: 1px solid rgba(0,201,167,0.18); text-decoration: none; transition: all 0.2s; background: #0A1628; }
+  .contact-btn:hover { transform: translateX(6px); border-color: #00C9A7; }
+  .contact-btn-whatsapp:hover { border-color: #25D366; background: rgba(37,211,102,0.06); }
+  .contact-btn-email:hover { background: rgba(0,201,167,0.06); }
+  .contact-btn-phone:hover { border-color: #64C8FF; background: rgba(100,200,255,0.06); }
+  .contact-btn-anydesk:hover { border-color: #FF6B6B; background: rgba(255,107,107,0.06); }
+  .contact-btn-icon { font-size: 1.8rem; min-width: 2rem; text-align: center; }
+  .contact-btn-text { display: flex; flex-direction: column; flex: 1; }
+  .contact-btn-label { font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 1rem; color: #CCD6F6; }
+  .contact-btn-sub { font-size: 0.9rem; color: #8892B0; }
+  .contact-btn-arrow { font-size: 1.2rem; color: #00C9A7; font-weight: 700; }
+  .contact-response-note { font-size: 0.9rem; color: #8892B0; text-align: center; margin-top: 0.5rem; padding: 0.8rem; background: rgba(0,201,167,0.05); border-radius: 8px; border: 1px solid rgba(0,201,167,0.18); }
 </style>
 </head>
 <body>
@@ -744,7 +757,44 @@
       </div>
 
       <div>
-        
+      <div class="contact-buttons">
+        <a href="https://wa.me/32495533229" target="_blank" class="contact-btn contact-btn-whatsapp">
+          <span class="contact-btn-icon">💬</span>
+          <div class="contact-btn-text">
+            <span class="contact-btn-label">WhatsApp us</span>
+            <span class="contact-btn-sub">Tap to open WhatsApp chat directly</span>
+          </div>
+          <span class="contact-btn-arrow">→</span>
+        </a>
+        <a href="mailto:info.guardmesh@gmail.com?subject=GuardMesh%20Service%20Enquiry" class="contact-btn contact-btn-email">
+          <span class="contact-btn-icon">📧</span>
+          <div class="contact-btn-text">
+            <span class="contact-btn-label">Send us an email</span>
+            <span class="contact-btn-sub">info.guardmesh@gmail.com</span>
+          </div>
+          <span class="contact-btn-arrow">→</span>
+        </a>
+        <a href="tel:+32495533229" class="contact-btn contact-btn-phone">
+          <span class="contact-btn-icon">📞</span>
+          <div class="contact-btn-text">
+            <span class="contact-btn-label">Call us directly</span>
+            <span class="contact-btn-sub">+32 49 55 33 229</span>
+          </div>
+          <span class="contact-btn-arrow">→</span>
+        </a>
+        <a href="https://anydesk.com/en/downloads" target="_blank" class="contact-btn contact-btn-anydesk">
+          <span class="contact-btn-icon">🖥️</span>
+          <div class="contact-btn-text">
+            <span class="contact-btn-label">Remote support via AnyDesk</span>
+            <span class="contact-btn-sub">Download AnyDesk then contact us</span>
+          </div>
+          <span class="contact-btn-arrow">→</span>
+        </a>
+        <p class="contact-response-note">⚡ We typically respond within 2 hours during business hours</p>
+      </div>
+    </div>
+  </div>
+
 
 </section>
 
