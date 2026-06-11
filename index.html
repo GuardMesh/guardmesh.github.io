@@ -310,6 +310,226 @@
   </div>
 </section>
 
+<!-- SECURITY ASSESSMENT SECTION -->
+<!-- Paste this entire block BETWEEN </section> of About and <!-- SERVICES --> -->
+
+<section id="security" style="padding: 6rem 0; background: var(--navy);">
+  <div style="max-width:1100px; margin:0 auto; padding:0 2rem;">
+
+    <!-- Header -->
+    <span style="font-family:'Space Grotesk',sans-serif; font-size:0.78rem; font-weight:600; color:#00C9A7; letter-spacing:2px; text-transform:uppercase; margin-bottom:0.8rem; display:block;">Security assessment</span>
+    <h2 style="font-family:'Space Grotesk',sans-serif; font-size:clamp(1.8rem,3.5vw,2.8rem); color:#E6F1FF; margin-bottom:0.8rem;">Is your home really secure?</h2>
+    <p style="font-size:1.15rem; color:#8892B0; max-width:580px; margin-bottom:2.5rem;">Tick every item that applies to your home and see your security score instantly.</p>
+
+    <!-- Score bar -->
+    <div style="margin-bottom:2rem;">
+      <div style="display:flex; justify-content:space-between; font-family:'Space Grotesk',sans-serif; font-size:0.85rem; color:#8892B0; margin-bottom:0.5rem;">
+        <span>Your security score</span>
+        <span id="gm-score-txt">0 / 9 secured</span>
+      </div>
+      <div style="height:8px; background:#112240; border-radius:4px; overflow:hidden; border:1px solid rgba(0,201,167,0.18);">
+        <div id="gm-score-fill" style="height:100%; width:0%; border-radius:4px; background:#E24B4A; transition:width 0.4s, background 0.4s;"></div>
+      </div>
+    </div>
+
+    <!-- Checklist -->
+    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:10px; margin-bottom:2rem;" id="gm-checklist">
+
+      <div class="gm-item" onclick="gmToggle(this)" style="display:flex; align-items:flex-start; gap:12px; padding:1rem 1.2rem; background:#112240; border:1px solid rgba(0,201,167,0.18); border-radius:10px; cursor:pointer; transition:border-color 0.2s;">
+        <div class="gm-box" style="width:20px; height:20px; min-width:20px; border:1px solid rgba(0,201,167,0.4); border-radius:4px; background:#0A1628; display:flex; align-items:center; justify-content:center; margin-top:2px;">
+          <span class="gm-tick" style="display:none; color:#00C9A7; font-size:14px; font-weight:700;">✓</span>
+        </div>
+        <span style="font-size:0.9rem; color:#CCD6F6; line-height:1.5;">My router is properly secured with a strong unique password</span>
+      </div>
+
+      <div class="gm-item" onclick="gmToggle(this)" style="display:flex; align-items:flex-start; gap:12px; padding:1rem 1.2rem; background:#112240; border:1px solid rgba(0,201,167,0.18); border-radius:10px; cursor:pointer; transition:border-color 0.2s;">
+        <div class="gm-box" style="width:20px; height:20px; min-width:20px; border:1px solid rgba(0,201,167,0.4); border-radius:4px; background:#0A1628; display:flex; align-items:center; justify-content:center; margin-top:2px;">
+          <span class="gm-tick" style="display:none; color:#00C9A7; font-size:14px; font-weight:700;">✓</span>
+        </div>
+        <span style="font-size:0.9rem; color:#CCD6F6; line-height:1.5;">Multi-Factor Authentication (MFA) is enabled on all my important accounts</span>
+      </div>
+
+      <div class="gm-item" onclick="gmToggle(this)" style="display:flex; align-items:flex-start; gap:12px; padding:1rem 1.2rem; background:#112240; border:1px solid rgba(0,201,167,0.18); border-radius:10px; cursor:pointer; transition:border-color 0.2s;">
+        <div class="gm-box" style="width:20px; height:20px; min-width:20px; border:1px solid rgba(0,201,167,0.4); border-radius:4px; background:#0A1628; display:flex; align-items:center; justify-content:center; margin-top:2px;">
+          <span class="gm-tick" style="display:none; color:#00C9A7; font-size:14px; font-weight:700;">✓</span>
+        </div>
+        <span style="font-size:0.9rem; color:#CCD6F6; line-height:1.5;">My CCTV cameras are protected from unauthorized access</span>
+      </div>
+
+      <div class="gm-item" onclick="gmToggle(this)" style="display:flex; align-items:flex-start; gap:12px; padding:1rem 1.2rem; background:#112240; border:1px solid rgba(0,201,167,0.18); border-radius:10px; cursor:pointer; transition:border-color 0.2s;">
+        <div class="gm-box" style="width:20px; height:20px; min-width:20px; border:1px solid rgba(0,201,167,0.4); border-radius:4px; background:#0A1628; display:flex; align-items:center; justify-content:center; margin-top:2px;">
+          <span class="gm-tick" style="display:none; color:#00C9A7; font-size:14px; font-weight:700;">✓</span>
+        </div>
+        <span style="font-size:0.9rem; color:#CCD6F6; line-height:1.5;">I have secure remote access to my home devices via VPN</span>
+      </div>
+
+      <div class="gm-item" onclick="gmToggle(this)" style="display:flex; align-items:flex-start; gap:12px; padding:1rem 1.2rem; background:#112240; border:1px solid rgba(0,201,167,0.18); border-radius:10px; cursor:pointer; transition:border-color 0.2s;">
+        <div class="gm-box" style="width:20px; height:20px; min-width:20px; border:1px solid rgba(0,201,167,0.4); border-radius:4px; background:#0A1628; display:flex; align-items:center; justify-content:center; margin-top:2px;">
+          <span class="gm-tick" style="display:none; color:#00C9A7; font-size:14px; font-weight:700;">✓</span>
+        </div>
+        <span style="font-size:0.9rem; color:#CCD6F6; line-height:1.5;">My smart devices are isolated from my personal computers and phones</span>
+      </div>
+
+      <div class="gm-item" onclick="gmToggle(this)" style="display:flex; align-items:flex-start; gap:12px; padding:1rem 1.2rem; background:#112240; border:1px solid rgba(0,201,167,0.18); border-radius:10px; cursor:pointer; transition:border-color 0.2s;">
+        <div class="gm-box" style="width:20px; height:20px; min-width:20px; border:1px solid rgba(0,201,167,0.4); border-radius:4px; background:#0A1628; display:flex; align-items:center; justify-content:center; margin-top:2px;">
+          <span class="gm-tick" style="display:none; color:#00C9A7; font-size:14px; font-weight:700;">✓</span>
+        </div>
+        <span style="font-size:0.9rem; color:#CCD6F6; line-height:1.5;">I could recover my data if my laptop was stolen or lost</span>
+      </div>
+
+      <div class="gm-item" onclick="gmToggle(this)" style="display:flex; align-items:flex-start; gap:12px; padding:1rem 1.2rem; background:#112240; border:1px solid rgba(0,201,167,0.18); border-radius:10px; cursor:pointer; transition:border-color 0.2s;">
+        <div class="gm-box" style="width:20px; height:20px; min-width:20px; border:1px solid rgba(0,201,167,0.4); border-radius:4px; background:#0A1628; display:flex; align-items:center; justify-content:center; margin-top:2px;">
+          <span class="gm-tick" style="display:none; color:#00C9A7; font-size:14px; font-weight:700;">✓</span>
+        </div>
+        <span style="font-size:0.9rem; color:#CCD6F6; line-height:1.5;">My family members are protected against phishing and online scams</span>
+      </div>
+
+      <div class="gm-item" onclick="gmToggle(this)" style="display:flex; align-items:flex-start; gap:12px; padding:1rem 1.2rem; background:#112240; border:1px solid rgba(0,201,167,0.18); border-radius:10px; cursor:pointer; transition:border-color 0.2s;">
+        <div class="gm-box" style="width:20px; height:20px; min-width:20px; border:1px solid rgba(0,201,167,0.4); border-radius:4px; background:#0A1628; display:flex; align-items:center; justify-content:center; margin-top:2px;">
+          <span class="gm-tick" style="display:none; color:#00C9A7; font-size:14px; font-weight:700;">✓</span>
+        </div>
+        <span style="font-size:0.9rem; color:#CCD6F6; line-height:1.5;">I know which devices in my home are exposed to the internet</span>
+      </div>
+
+      <div class="gm-item" onclick="gmToggle(this)" style="display:flex; align-items:flex-start; gap:12px; padding:1rem 1.2rem; background:#112240; border:1px solid rgba(0,201,167,0.18); border-radius:10px; cursor:pointer; transition:border-color 0.2s;">
+        <div class="gm-box" style="width:20px; height:20px; min-width:20px; border:1px solid rgba(0,201,167,0.4); border-radius:4px; background:#0A1628; display:flex; align-items:center; justify-content:center; margin-top:2px;">
+          <span class="gm-tick" style="display:none; color:#00C9A7; font-size:14px; font-weight:700;">✓</span>
+        </div>
+        <span style="font-size:0.9rem; color:#CCD6F6; line-height:1.5;">My smart home devices operate locally — not dependent on third-party cloud servers</span>
+      </div>
+
+    </div>
+
+    <!-- Alert box -->
+    <div id="gm-alert" style="padding:1.2rem 1.5rem; border-radius:12px; border:1px solid rgba(239,159,39,0.4); background:rgba(239,159,39,0.08); margin-bottom:2.5rem; display:flex; gap:12px; align-items:flex-start;">
+      <span style="font-size:1.4rem; margin-top:2px;">⚠️</span>
+      <p id="gm-alert-txt" style="font-size:0.9rem; color:#EF9F27; margin:0; line-height:1.7;">If you answered "No" or "I'm not sure" to any of these questions, your home network and personal data may be exposed to unnecessary risks. GuardMesh can help you fix every one of these gaps.</p>
+    </div>
+
+    <!-- Solutions -->
+    <h3 style="font-family:'Space Grotesk',sans-serif; font-size:1.4rem; color:#E6F1FF; margin-bottom:1.5rem;">How we fix each risk</h3>
+    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:1rem; margin-bottom:2rem;">
+
+      <div style="background:#112240; border:1px solid rgba(0,201,167,0.18); border-radius:12px; padding:1.4rem; transition:border-color 0.2s;">
+        <div style="font-size:1.8rem; margin-bottom:0.8rem;">💻</div>
+        <h4 style="font-family:'Space Grotesk',sans-serif; font-size:0.95rem; color:#CCD6F6; margin:0 0 0.6rem;">Laptop & account protection</h4>
+        <ul style="margin:0; padding-left:1.1rem;">
+          <li style="font-size:0.85rem; color:#8892B0; line-height:1.9;">Multi-Factor Authentication</li>
+          <li style="font-size:0.85rem; color:#8892B0; line-height:1.9;">Device hardening</li>
+          <li style="font-size:0.85rem; color:#8892B0; line-height:1.9;">Password manager setup</li>
+        </ul>
+      </div>
+
+      <div style="background:#112240; border:1px solid rgba(0,201,167,0.18); border-radius:12px; padding:1.4rem; transition:border-color 0.2s;">
+        <div style="font-size:1.8rem; margin-bottom:0.8rem;">🌐</div>
+        <h4 style="font-family:'Space Grotesk',sans-serif; font-size:0.95rem; color:#CCD6F6; margin:0 0 0.6rem;">Router & Wi-Fi security</h4>
+        <ul style="margin:0; padding-left:1.1rem;">
+          <li style="font-size:0.85rem; color:#8892B0; line-height:1.9;">Router hardening</li>
+          <li style="font-size:0.85rem; color:#8892B0; line-height:1.9;">Wi-Fi security optimization</li>
+          <li style="font-size:0.85rem; color:#8892B0; line-height:1.9;">Firmware updates</li>
+          <li style="font-size:0.85rem; color:#8892B0; line-height:1.9;">Guest network setup</li>
+        </ul>
+      </div>
+
+      <div style="background:#112240; border:1px solid rgba(0,201,167,0.18); border-radius:12px; padding:1.4rem; transition:border-color 0.2s;">
+        <div style="font-size:1.8rem; margin-bottom:0.8rem;">📷</div>
+        <h4 style="font-family:'Space Grotesk',sans-serif; font-size:0.95rem; color:#CCD6F6; margin:0 0 0.6rem;">CCTV camera security</h4>
+        <ul style="margin:0; padding-left:1.1rem;">
+          <li style="font-size:0.85rem; color:#8892B0; line-height:1.9;">Security assessment</li>
+          <li style="font-size:0.85rem; color:#8892B0; line-height:1.9;">Secure remote access via VPN</li>
+          <li style="font-size:0.85rem; color:#8892B0; line-height:1.9;">Password hardening</li>
+          <li style="font-size:0.85rem; color:#8892B0; line-height:1.9;">Network segmentation</li>
+        </ul>
+      </div>
+
+      <div style="background:#112240; border:1px solid rgba(0,201,167,0.18); border-radius:12px; padding:1.4rem; transition:border-color 0.2s;">
+        <div style="font-size:1.8rem; margin-bottom:0.8rem;">🏠</div>
+        <h4 style="font-family:'Space Grotesk',sans-serif; font-size:0.95rem; color:#CCD6F6; margin:0 0 0.6rem;">Smart home isolation</h4>
+        <ul style="margin:0; padding-left:1.1rem;">
+          <li style="font-size:0.85rem; color:#8892B0; line-height:1.9;">IoT network segmentation</li>
+          <li style="font-size:0.85rem; color:#8892B0; line-height:1.9;">Device access control</li>
+          <li style="font-size:0.85rem; color:#8892B0; line-height:1.9;">Local control setup</li>
+        </ul>
+      </div>
+
+      <div style="background:#112240; border:1px solid rgba(0,201,167,0.18); border-radius:12px; padding:1.4rem; transition:border-color 0.2s;">
+        <div style="font-size:1.8rem; margin-bottom:0.8rem;">☁️</div>
+        <h4 style="font-family:'Space Grotesk',sans-serif; font-size:0.95rem; color:#CCD6F6; margin:0 0 0.6rem;">Local vs cloud control</h4>
+        <ul style="margin:0; padding-left:1.1rem;">
+          <li style="font-size:0.85rem; color:#8892B0; line-height:1.9;">Cloud dependency audit</li>
+          <li style="font-size:0.85rem; color:#8892B0; line-height:1.9;">Local control migration</li>
+          <li style="font-size:0.85rem; color:#8892B0; line-height:1.9;">Private VPN remote access</li>
+          <li style="font-size:0.85rem; color:#8892B0; line-height:1.9;">No vendor lock-in</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- CTA -->
+    <div style="padding:1.5rem 2rem; background:rgba(0,201,167,0.06); border:1px solid rgba(0,201,167,0.25); border-radius:12px; display:flex; align-items:center; justify-content:space-between; gap:1rem; flex-wrap:wrap;">
+      <p style="font-family:'Space Grotesk',sans-serif; font-size:1rem; color:#CCD6F6; margin:0; font-weight:500;">Not sure where to start? Book a free consultation — no commitment required.</p>
+      <a href="#contact" style="display:inline-block; background:#00C9A7; color:#0A1628; font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:0.9rem; padding:0.75rem 1.5rem; border-radius:8px; text-decoration:none; white-space:nowrap;">Get a free consultation →</a>
+    </div>
+
+  </div>
+</section>
+
+<script>
+function gmToggle(el) {
+  var isChecked = el.getAttribute('data-checked') === '1';
+  if (isChecked) {
+    el.setAttribute('data-checked', '0');
+    el.style.borderColor = 'rgba(0,201,167,0.18)';
+    el.style.background = '#112240';
+    el.querySelector('.gm-tick').style.display = 'none';
+    el.querySelector('.gm-box').style.background = '#0A1628';
+  } else {
+    el.setAttribute('data-checked', '1');
+    el.style.borderColor = '#00C9A7';
+    el.style.background = 'rgba(0,201,167,0.06)';
+    el.querySelector('.gm-tick').style.display = 'block';
+    el.querySelector('.gm-box').style.background = 'rgba(0,201,167,0.15)';
+  }
+  gmUpdateScore();
+}
+function gmUpdateScore() {
+  var items = document.querySelectorAll('.gm-item');
+  var checked = 0;
+  items.forEach(function(i){ if(i.getAttribute('data-checked')==='1') checked++; });
+  var total = items.length;
+  var pct = Math.round((checked / total) * 100);
+  document.getElementById('gm-score-txt').textContent = checked + ' / ' + total + ' secured';
+  var fill = document.getElementById('gm-score-fill');
+  fill.style.width = pct + '%';
+  fill.style.background = pct < 40 ? '#E24B4A' : pct < 70 ? '#EF9F27' : '#00C9A7';
+  var txt = document.getElementById('gm-alert-txt');
+  var box = document.getElementById('gm-alert');
+  if (pct === 100) {
+    txt.textContent = 'Great job! Your home security looks solid. Contact GuardMesh for a professional audit to confirm everything is properly configured.';
+    txt.style.color = '#00C9A7';
+    box.style.borderColor = 'rgba(0,201,167,0.4)';
+    box.style.background = 'rgba(0,201,167,0.06)';
+  } else if (pct >= 70) {
+    txt.textContent = 'You have good security habits but a few gaps remain. GuardMesh can help you close them completely.';
+    txt.style.color = '#EF9F27';
+    box.style.borderColor = 'rgba(239,159,39,0.4)';
+    box.style.background = 'rgba(239,159,39,0.08)';
+  } else if (pct >= 40) {
+    txt.textContent = 'Several risks detected. Your home network and personal data may be exposed. GuardMesh can fix these gaps quickly.';
+    txt.style.color = '#EF9F27';
+    box.style.borderColor = 'rgba(239,159,39,0.4)';
+    box.style.background = 'rgba(239,159,39,0.08)';
+  } else {
+    txt.textContent = 'Your home has significant security risks. If you answered "No" to several of these, your data and devices may be exposed. GuardMesh can help you fix every gap.';
+    txt.style.color = '#EF9F27';
+    box.style.borderColor = 'rgba(239,159,39,0.4)';
+    box.style.background = 'rgba(239,159,39,0.08)';
+  }
+}
+</script>
+
+<!-- END SECURITY ASSESSMENT SECTION -->
+
 <!-- SERVICES -->
 <section id="services">
   <div class="container">
