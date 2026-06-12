@@ -665,36 +665,52 @@ function gmUpdateScore() {
     <p class="section-sub">Real installations, real results — camera setups, smart home automation and cybersecurity across Belgium and beyond.</p>
     <div class="media-grid">
 
-     <!-- Project 1 Lot — Photo 1 -->
+  <!-- Project 1 Lot — Gallery Card -->
 <div class="media-card">
-  <img src="prj1-Lot_1.jpg" alt="Camera installation Lot Belgium"
-       style="width:100%; height:220px; object-fit:cover;"/>
+  
+  <!-- Main photo shown by default -->
+  <div style="position:relative;">
+    <img id="lot-main-img" src="prj1-Lot_1.jpg" alt="Camera installation Lot Belgium"
+         style="width:100%; height:220px; object-fit:cover; display:block;"/>
+    
+    <!-- Arrow navigation -->
+    <button onclick="lotPrev()" style="position:absolute; left:8px; top:50%; transform:translateY(-50%); background:rgba(0,0,0,0.6); color:white; border:none; border-radius:50%; width:32px; height:32px; cursor:pointer; font-size:16px;">‹</button>
+    <button onclick="lotNext()" style="position:absolute; right:8px; top:50%; transform:translateY(-50%); background:rgba(0,0,0,0.6); color:white; border:none; border-radius:50%; width:32px; height:32px; cursor:pointer; font-size:16px;">›</button>
+    
+    <!-- Photo counter -->
+    <span id="lot-counter" style="position:absolute; bottom:8px; right:10px; background:rgba(0,0,0,0.6); color:white; font-size:12px; padding:2px 8px; border-radius:10px;">1 / 3</span>
+  </div>
+
+  <!-- Thumbnail row -->
+  <div style="display:flex; gap:6px; padding:8px;">
+    <img src="prj1-Lot_1.jpg" onclick="lotShow(0)" style="width:33%; height:60px; object-fit:cover; border-radius:6px; cursor:pointer; border:2px solid #00C9A7; opacity:1;"/>
+    <img src="prj1-Lot_2.jpg" onclick="lotShow(1)" style="width:33%; height:60px; object-fit:cover; border-radius:6px; cursor:pointer; border:2px solid transparent; opacity:0.6;"/>
+    <img src="prj1-Lot_3.jpg" onclick="lotShow(2)" style="width:33%; height:60px; object-fit:cover; border-radius:6px; cursor:pointer; border:2px solid transparent; opacity:0.6;"/>
+  </div>
+
   <div class="media-info">
     <h4>📷 Camera Installation — Lot, Belgium</h4>
-    <p>Professional Reolink camera setup with local recording and secure remote access via VPN.</p>
+    <p>Professional Reolink camera setup with local recording, network segmentation and secure remote access via VPN.</p>
   </div>
 </div>
 
-<!-- Project 1 Lot — Photo 2 -->
-<div class="media-card">
-  <img src="prj1-Lot_2.jpg" alt="Camera installation Lot Belgium"
-       style="width:100%; height:220px; object-fit:cover;"/>
-  <div class="media-info">
-    <h4>📷 Network Security Setup — Lot, Belgium</h4>
-    <p>Full network segmentation — IoT devices isolated from personal devices for maximum security.</p>
-  </div>
-</div>
+<script>
+var lotImgs = ["prj1-Lot_1.jpg", "prj1-Lot_2.jpg", "prj1-Lot_3.jpg"];
+var lotIdx = 0;
+var lotThumbs = document.querySelectorAll('[onclick^="lotShow"]');
 
-<!-- Project 1 Lot — Photo 3 -->
-<div class="media-card">
-  <img src="prj1-Lot_3.jpg" alt="Camera installation Lot Belgium"
-       style="width:100%; height:220px; object-fit:cover;"/>
-  <div class="media-info">
-    <h4>📷 Home Assistant Integration — Lot, Belgium</h4>
-    <p>Cameras fully integrated with Home Assistant for motion detection, alerts, and local control.</p>
-  </div>
-</div>
-   
+function lotShow(n) {
+  lotIdx = n;
+  document.getElementById('lot-main-img').src = lotImgs[n];
+  document.getElementById('lot-counter').textContent = (n+1) + ' / 3';
+  lotThumbs.forEach(function(t, i) {
+    t.style.borderColor = i === n ? '#00C9A7' : 'transparent';
+    t.style.opacity = i === n ? '1' : '0.6';
+  });
+}
+function lotNext() { lotShow((lotIdx + 1) % 3); }
+function lotPrev() { lotShow((lotIdx + 2) % 3); }
+</script>
 
       <!-- Card 5: Business presentation video -->
       <!-- TO ADD:  -->
