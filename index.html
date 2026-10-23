@@ -775,18 +775,31 @@ function lotPrev() { lotShow((lotIdx + 2) % 3); }
 </script>
 
 
-<div class="media-card">
- 
-<div class="project-images">
-  <img src="prj1-Lot_4.jpg"
-       alt="Network Security Setup 1">
 
-  <img src="Prj2-Bru_2.jpeg"
-       alt="Network Security Setup 2">
-</div>
+<!-- Card 2: Network Security Gallery -->
+<div class="media-card">
+  <div style="position:relative;">
+    <img id="network-main-img" src="prj1-Lot_4.jpg"
+         alt="Network Security Setup"
+         style="width:100%; height:220px; object-fit:cover; display:block;">
+
+    <button onclick="networkPrev()" class="gallery-prev">&#8249;</button>
+    <button onclick="networkNext()" class="gallery-next">&#8250;</button>
+
+    <span id="network-counter" class="gallery-counter">1 / 2</span>
+  </div>
+
+  <div class="gallery-thumbnails">
+    <img src="prj1-Lot_4.jpg"
+         onclick="networkShow(0)"
+         alt="Network project photo 1">
+
+    <img src="Prj2-Bru_2.jpeg"
+         onclick="networkShow(1)"
+         alt="Network project photo 2">
+  </div>
 
   <div class="media-info">
-   
     <h4>🔒 Network Security Setup</h4>
     <p>Full network segmentation — IoT devices isolated from personal devices for maximum security.</p>
   </div>
