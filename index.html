@@ -315,6 +315,28 @@
     opacity: 1;
 }
 
+
+  /* CYBERSECURITY PRICING */
+  #pricing { background:var(--navy2); }
+  .pricing-intro { max-width:680px; margin-bottom:2rem; }
+  .pricing-standalone { background:var(--navy); border:1px solid rgba(0,201,167,.38); border-radius:var(--radius); padding:1.8rem; display:flex; align-items:center; justify-content:space-between; gap:1.5rem; flex-wrap:wrap; margin-bottom:2rem; }
+  .pricing-standalone h3 { font-size:var(--fs-xl); margin:.35rem 0 .55rem; }
+  .pricing-standalone p { font-size:var(--fs-sm); max-width:640px; }
+  .pricing-eyebrow { color:var(--teal); font-family:'Space Grotesk',sans-serif; font-size:var(--fs-xs); font-weight:600; letter-spacing:1.3px; text-transform:uppercase; }
+  .pricing-amount { font-family:'Space Grotesk',sans-serif; color:var(--white); font-weight:700; font-size:2.2rem; line-height:1.2; white-space:nowrap; }
+  .pricing-amount small { font-size:.85rem; color:var(--slate); font-weight:400; }
+  .pricing-plans { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:1.2rem; }
+  .pricing-plan { display:flex; flex-direction:column; background:var(--navy); border:1px solid var(--border); border-radius:var(--radius); padding:1.7rem; }
+  .pricing-plan.featured { border-color:var(--teal); box-shadow:0 0 0 1px rgba(0,201,167,.14); }
+  .pricing-plan h3 { font-size:var(--fs-xl); margin:.4rem 0; }
+  .pricing-plan .pricing-description { font-size:var(--fs-sm); margin:1rem 0; min-height:3rem; }
+  .pricing-features { list-style:none; margin:0 0 1.6rem; padding:0; flex:1; }
+  .pricing-features li { color:var(--light); font-size:var(--fs-sm); padding:.48rem 0 .48rem 1.35rem; position:relative; line-height:1.5; }
+  .pricing-features li::before { content:'✓'; position:absolute; left:0; color:var(--teal); }
+  .pricing-plan .btn-outline, .pricing-plan .btn-primary { text-align:center; margin:0; }
+  .pricing-note { font-size:var(--fs-xs); margin-top:1.5rem; line-height:1.7; }
+  @media (max-width:850px) { .pricing-plans { grid-template-columns:1fr; } .pricing-plan .pricing-description { min-height:0; } }
+
 </style>
  
 </head>
@@ -330,6 +352,7 @@
     <ul class="nav-links" id="navLinks">
       <li><a href="#about">About</a></li>
       <li><a href="#services">Services</a></li>
+      <li><a href="#pricing">Pricing</a></li>
      <li><a href="#security">Security Check</a></li>
       <li><a href="#why">Why GuardMesh</a></li>
       <li><a href="#media">Portfolio</a></li>
@@ -348,11 +371,11 @@
     <div class="hero-grid">
       <div class="hero-text">
         <span class="hero-tag">Smart Home · Cybersecurity · Belgium</span>
-        <h1>Your Home should be<br/><em>&nbsp  &nbsp Smart, Private,</em><br/> & &nbsp Unhackable.</h1>
-        <p class="hero-sub">We make it happen — local control, zero cloud dependency, and certified network security from day one.</p>
+        <h1>Your Home should be<br/><em>&nbsp  &nbsp Smart, Private,</em><br/> & &nbsp Secure.</h1>
+        <p class="hero-sub">We make it happen — local control, privacy-focused smart home systems, and practical network security from day one.</p>
         <p class="hero-location">📍 Sint-Pieters-Leeuw, <span>1600 Belgium</span> — serving the wider Brussels region</p>
         <div>
-          <a href="#contact" class="btn-primary">Get a free security audit</a>
+          <a href="#contact" class="btn-primary">Get a free consultation</a>
           <a href="#services" class="btn-outline">Our services</a>
         </div>
       </div>
@@ -445,7 +468,75 @@
 </section>
 
 <!-- SECURITY ASSESSMENT SECTION -->
-<!-- Paste this entire block BETWEEN </section> of About and <!-- SERVICES --> -->
+<!-- Paste this entire block BETWEEN </section> of About and <!-- HOME CYBERSECURITY PRICING -->
+<section id="pricing">
+  <div class="container">
+    <span class="section-tag">Clear pricing</span>
+    <h2 class="section-title">Home cybersecurity &amp; pricing</h2>
+    <div class="section-divider"></div>
+    <p class="section-sub pricing-intro">Start with a one-time home network assessment, or choose an annual plan for additional guidance and support.</p>
+
+    <div class="pricing-standalone">
+      <div>
+        <span class="pricing-eyebrow">One-time service · No subscription</span>
+        <h3>Home Network Security Assessment</h3>
+        <p>We visit your home with our KBE Cybersecurity Assessment Box to discover visible network devices, review detectable services and potential security risks, and provide a network overview and PDF report with practical recommendations.</p>
+      </div>
+      <div>
+        <div class="pricing-amount">€149 <small>/ one time</small></div>
+        <a href="#contact" class="btn-primary" style="margin:1rem 0 0;">Book an assessment</a>
+      </div>
+    </div>
+
+    <h3 style="font-size:var(--fs-xl);margin-bottom:.5rem;">Annual protection plans</h3>
+    <p style="font-size:var(--fs-sm);margin-bottom:1.5rem;">Each annual plan includes an initial on-site home network security assessment, plus the services listed below.</p>
+    <div class="pricing-plans">
+      <article class="pricing-plan">
+        <span class="pricing-eyebrow">Core protection</span>
+        <h3>Essential</h3>
+        <div class="pricing-amount">€199 <small>/ year</small></div>
+        <p class="pricing-description">A professional cybersecurity baseline and ongoing awareness.</p>
+        <ul class="pricing-features">
+          <li>On-site home network security assessment</li>
+          <li>Wi-Fi &amp; device security review</li>
+          <li>Practical security advice</li>
+          <li>Firmware security update guidance</li>
+          <li>Monthly awareness emails</li>
+        </ul>
+        <a href="#contact" class="btn-outline">Ask about Essential</a>
+      </article>
+      <article class="pricing-plan featured">
+        <span class="pricing-eyebrow">Enhanced protection · Popular choice</span>
+        <h3>Standard</h3>
+        <div class="pricing-amount">€299 <small>/ year</small></div>
+        <p class="pricing-description">Extra help protecting accounts, devices and personal data.</p>
+        <ul class="pricing-features">
+          <li>Everything in Essential</li>
+          <li>Account security &amp; malware checks</li>
+          <li>Password, login &amp; backup security guidance</li>
+          <li>Annual cybersecurity support call (1/year)</li>
+        </ul>
+        <a href="#contact" class="btn-primary">Ask about Standard</a>
+      </article>
+      <article class="pricing-plan">
+        <span class="pricing-eyebrow">Comprehensive protection</span>
+        <h3>Premium</h3>
+        <div class="pricing-amount">€449 <small>/ year</small></div>
+        <p class="pricing-description">Advanced reviews, priority support and extra visits.</p>
+        <ul class="pricing-features">
+          <li>Everything in Standard</li>
+          <li>Advanced network &amp; smart device security review</li>
+          <li>Priority cybersecurity support (2 calls/year)</li>
+          <li>Additional on-site security visits (2/year)</li>
+        </ul>
+        <a href="#contact" class="btn-outline">Ask about Premium</a>
+      </article>
+    </div>
+    <p class="pricing-note">The €149 assessment is a one-time service; annual plans include additional guidance and support. Assessments identify observable devices, services and potential risks, but cannot guarantee that every vulnerability will be found. Visits are subject to service-area and scope confirmation. Please confirm VAT treatment before publishing these prices as final consumer prices. Custom installations and work outside the selected plan are quoted separately.</p>
+  </div>
+</section>
+
+<!-- SERVICES --> -->
 
 <section id="security" style="padding: 6rem 0; background: var(--navy);">
   <div style="max-width:1100px; margin:0 auto; padding:0 2rem;">
@@ -602,7 +693,7 @@
     <!-- CTA -->
     <div style="padding:1.5rem 2rem; background:rgba(0,201,167,0.06); border:1px solid rgba(0,201,167,0.25); border-radius:12px; display:flex; align-items:center; justify-content:space-between; gap:1rem; flex-wrap:wrap;">
       <p style="font-family:'Space Grotesk',sans-serif; font-size:1rem; color:#CCD6F6; margin:0; font-weight:500;">Not sure where to start? Book a free consultation — no commitment required.</p>
-      <a href="#contact" style="display:inline-block; background:#00C9A7; color:#0A1628; font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:0.9rem; padding:0.75rem 1.5rem; border-radius:8px; text-decoration:none; white-space:nowrap;">Get a free security audit →</a>
+      <a href="#contact" style="display:inline-block; background:#00C9A7; color:#0A1628; font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:0.9rem; padding:0.75rem 1.5rem; border-radius:8px; text-decoration:none; white-space:nowrap;">Get a free consultation →</a>
     </div>
 
   </div>
@@ -696,7 +787,7 @@ function gmUpdateScore() {
       <div class="service-card">
         <span class="service-icon">🔒</span>
         <h3>Home Cybersecurity</h3>
-        <p>Secure your home network from the ground up. Network segmentation, firewall setup, device hardening, VPN access, and full security audit of your connected devices.</p>
+        <p>Secure your home network from the ground up. Network segmentation, firewall setup, device hardening, VPN access, and security reviews of your connected devices.</p>
         <div class="service-tags">
           <span class="tag">Network Security</span>
           <span class="tag">VPN</span>
@@ -761,7 +852,7 @@ function gmUpdateScore() {
       </div>
       <div class="why-item">
         <span class="why-icon">💶</span>
-        <h3>No hidden subscriptions</h3>
+        <h3>No mandatory smart home subscriptions</h3>
         <p>We build systems you own completely. No monthly fees to keep your own home running.</p>
       </div>
       <div class="why-item">
