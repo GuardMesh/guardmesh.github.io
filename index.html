@@ -1,0 +1,1307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GuardMesh — Smart Home, Cybersecurity &amp; IT Consulting Belgium</title>
+<meta name="description" content="GuardMesh — IT infrastructure consulting, Microsoft 365, VMware, backups, cybersecurity and smart home automation in Sint-Pieters-Leeuw and Brussels, Belgium.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Inter:wght@300;400;500&amp;display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --navy:#0A1628; --navy2:#112240; --teal:#00C9A7; --teal2:#00A88A;
+    --slate:#8892B0; --light:#CCD6F6; --white:#E6F1FF; --card:#112240;
+    --border:rgba(0,201,167,0.18); --radius:12px;
+    --fs-xs:0.78rem; --fs-sm:0.9rem; --fs-base:1rem; --fs-lg:1.15rem;
+    --fs-xl:1.4rem; --fs-2xl:2rem; --fs-3xl:2.8rem; --fs-4xl:3.8rem;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Inter', sans-serif; background: var(--navy); color: var(--slate); line-height: 1.7; overflow-x: hidden; }
+  h1,h2,h3,h4 { font-family: 'Space Grotesk', sans-serif; color: var(--light); line-height: 1.2; }
+  a { color: var(--teal); text-decoration: none; }
+  a:hover { color: var(--white); }
+  .container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
+
+  /* NAV */
+  nav { position: fixed; top: 0; width: 100%; z-index: 100; background: rgba(10,22,40,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); padding: 1rem 0; transition: all 0.3s; }
+  .nav-inner { display: flex; align-items: center; justify-content: space-between; max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
+  .logo { font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; font-weight: 700; color: var(--teal); letter-spacing: -0.5px; }
+  .logo span { color: var(--white); }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a { font-size: var(--fs-sm); color: var(--slate); font-family: 'Space Grotesk', sans-serif; font-weight: 500; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--teal); }
+  .nav-cta { background: transparent; border: 1px solid var(--teal); color: var(--teal) !important; padding: 0.4rem 1.1rem; border-radius: 6px; transition: all 0.2s !important; }
+  .nav-cta:hover { background: rgba(0,201,167,0.1) !important; }
+  .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 5px; }
+  .hamburger span { width: 24px; height: 2px; background: var(--teal); border-radius: 2px; transition: all 0.3s; }
+
+  /* HERO */
+  #hero { min-height: 100vh; display: flex; align-items: center; padding: 7rem 0 4rem; position: relative; overflow: hidden; }
+  .hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+  .hero-tag { display: inline-block; font-family: 'Space Grotesk', sans-serif; font-size: var(--fs-xs); font-weight: 600; color: var(--teal); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 1.2rem; }
+  .hero h1 { font-size: clamp(2.4rem, 5vw, var(--fs-4xl)); font-weight: 700; margin-bottom: 1.2rem; color: var(--white); }
+  .hero h1 em { font-style: normal; color: var(--teal); }
+  .hero-sub { font-size: var(--fs-lg); color: var(--slate); margin-bottom: 2rem; max-width: 480px; }
+  .hero-location { font-size: var(--fs-sm); color: var(--slate); margin-bottom: 2.5rem; }
+  .hero-location span { color: var(--teal); }
+  .btn-primary { display: inline-block; background: var(--teal); color: var(--navy) !important; font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: var(--fs-sm); padding: 0.85rem 2rem; border-radius: 8px; transition: all 0.2s; margin-right: 1rem; }
+  .btn-primary:hover { background: var(--teal2); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,201,167,0.25); }
+  .btn-outline { display: inline-block; border: 1px solid var(--border); color: var(--light) !important; font-family: 'Space Grotesk', sans-serif; font-weight: 500; font-size: var(--fs-sm); padding: 0.85rem 2rem; border-radius: 8px; transition: all 0.2s; }
+  .btn-outline:hover { border-color: var(--teal); color: var(--teal) !important; }
+  .hero-visual { display: flex; justify-content: center; align-items: center; }
+  .hero-card { background: var(--navy2); border: 1px solid var(--border); border-radius: 16px; padding: 2rem; width: 100%; max-width: 420px; font-family: 'Space Grotesk', sans-serif; }
+  .hero-card-title { font-size: var(--fs-sm); color: var(--teal); margin-bottom: 1.2rem; font-weight: 600; display: flex; align-items: center; gap: 0.5rem; }
+  .hero-card-title::before { content: ''; width: 8px; height: 8px; background: var(--teal); border-radius: 50%; animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:0.4;} }
+  .metric-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
+  .metric { background: rgba(0,201,167,0.06); border: 1px solid var(--border); border-radius: 10px; padding: 1rem; text-align: center; }
+  .metric-val { font-size: var(--fs-xl); font-weight: 700; color: var(--teal); display: block; }
+  .metric-label { font-size: var(--fs-xs); color: var(--slate); }
+  .device-list { display: flex; flex-direction: column; gap: 0.6rem; }
+  .device-item { display: flex; align-items: center; justify-content: space-between; background: rgba(255,255,255,0.03); border-radius: 8px; padding: 0.6rem 0.8rem; font-size: var(--fs-sm); }
+  .device-name { color: var(--light); }
+  .device-status { font-size: var(--fs-xs); padding: 0.2rem 0.6rem; border-radius: 20px; font-weight: 600; }
+  .status-on { background: rgba(0,201,167,0.15); color: var(--teal); }
+  .status-secure { background: rgba(100,200,255,0.1); color: #64C8FF; }
+  #hero::before { content: ''; position: absolute; inset: 0; background-image: radial-gradient(rgba(0,201,167,0.06) 1px, transparent 1px); background-size: 40px 40px; pointer-events: none; }
+  .hero-glow { position: absolute; top: 20%; right: 10%; width: 500px; height: 500px; background: radial-gradient(circle, rgba(0,201,167,0.08) 0%, transparent 70%); pointer-events: none; }
+
+  /* SECTIONS */
+  section { padding: 6rem 0; }
+  .section-tag { font-family: 'Space Grotesk', sans-serif; font-size: var(--fs-xs); font-weight: 600; color: var(--teal); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 0.8rem; display: block; }
+  .section-title { font-size: clamp(1.8rem, 3.5vw, var(--fs-3xl)); margin-bottom: 1rem; color: var(--white); }
+  .section-sub { font-size: var(--fs-lg); color: var(--slate); max-width: 580px; margin-bottom: 3rem; }
+  .section-divider { width: 60px; height: 3px; background: var(--teal); border-radius: 2px; margin-bottom: 1.5rem; }
+
+  /* ABOUT */
+  #about { background: var(--navy2); }
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+  .about-text p { margin-bottom: 1.2rem; font-size: var(--fs-base); }
+  .founder-card { display: flex; align-items: center; gap: 1.2rem; margin-bottom: 1.8rem; }
+  .founder-photo { width: 120px; height: 120px; border-radius: 50%; object-fit: cover; border: 2px solid var(--teal); flex-shrink: 0; }
+  .founder-info { display: flex; flex-direction: column; }
+  .founder-role { font-family: 'Space Grotesk', sans-serif; font-size: var(--fs-xs); font-weight: 600; color: var(--teal); letter-spacing: 2px; text-transform: uppercase; }
+  .founder-name { font-family: 'Space Grotesk', sans-serif; font-size: var(--fs-lg); font-weight: 600; color: var(--light); margin-top: 0.2rem; }
+  .founder-tag { font-size: var(--fs-xs); color: var(--slate); margin-top: 0.2rem; }
+  .about-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+  .stat-box { background: var(--navy); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem; text-align: center; transition: border-color 0.2s, transform 0.2s; }
+  .stat-box:hover { border-color: var(--teal); transform: translateY(-4px); }
+  .stat-num { font-family: 'Space Grotesk', sans-serif; font-size: var(--fs-2xl); font-weight: 700; color: var(--teal); display: block; }
+  .stat-desc { font-size: var(--fs-sm); color: var(--slate); }
+
+  /* SERVICES */
+  #services { background: var(--navy); }
+  .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
+  .service-card { background: var(--navy2); border: 1px solid var(--border); border-radius: var(--radius); padding: 2rem; transition: all 0.3s; position: relative; overflow: hidden; }
+  .service-card::before { content: ''; position: absolute; top: 0; left: 0; width: 3px; height: 0; background: var(--teal); transition: height 0.3s; }
+  .service-card:hover { border-color: var(--teal); transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,0,0,0.3); }
+  .service-card:hover::before { height: 100%; }
+  .service-icon { font-size: 2.2rem; margin-bottom: 1rem; display: block; }
+  .service-card h3 { font-size: var(--fs-lg); margin-bottom: 0.8rem; color: var(--light); }
+  .service-card p { font-size: var(--fs-sm); color: var(--slate); }
+  .service-tags { margin-top: 1.2rem; display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .tag { font-size: var(--fs-xs); color: var(--teal); border: 1px solid var(--border); padding: 0.2rem 0.6rem; border-radius: 4px; font-family: 'Space Grotesk', sans-serif; }
+
+  /* WHY */
+  #why { background: var(--navy2); }
+  .why-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 2rem; }
+  .why-item { text-align: center; padding: 2rem 1.5rem; border: 1px solid var(--border); border-radius: var(--radius); transition: all 0.2s; }
+  .why-item:hover { border-color: var(--teal); background: rgba(0,201,167,0.04); }
+  .why-icon { font-size: 2.5rem; margin-bottom: 1rem; display: block; }
+  .why-item h3 { font-size: var(--fs-base); margin-bottom: 0.5rem; color: var(--light); }
+  .why-item p { font-size: var(--fs-sm); }
+
+  /* MEDIA */
+  #media { background: var(--navy); }
+  .media-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+  .media-card { background: var(--navy2); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; transition: all 0.3s; }
+  .media-card:hover { border-color: var(--teal); transform: translateY(-4px); }
+  .media-card img, .media-card video { width: 100%; height: 200px; object-fit: cover; display: block; background: #0A1628; }
+  .media-placeholder { height: 200px; background: linear-gradient(135deg, #112240, #0A1628); display: flex; flex-direction: column; align-items: center; justify-content: center; color: var(--slate); font-size: var(--fs-sm); gap: 0.8rem; border-bottom: 1px solid var(--border); }
+  .media-placeholder-icon { font-size: 2.5rem; }
+  .media-info { padding: 1.2rem; }
+  .media-info h4 { font-size: var(--fs-base); color: var(--light); margin-bottom: 0.4rem; }
+  .media-info p { font-size: var(--fs-sm); color: var(--slate); }
+  .media-note { text-align: center; margin-top: 2rem; font-size: var(--fs-sm); color: var(--slate); font-style: italic; }
+
+  /* CONTACT */
+  #contact { background: var(--navy2); }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+  .contact-info p { margin-bottom: 1.5rem; font-size: var(--fs-base); }
+  .contact-item { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.2rem; font-size: var(--fs-base); color: var(--slate); }
+  .contact-item-icon { width: 42px; height: 42px; min-width: 42px; background: rgba(0,201,167,0.1); border: 1px solid var(--border); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; }
+  .contact-item span { color: var(--light); }
+  .contact-buttons { display: flex; flex-direction: column; gap: 1rem; }
+  .contact-btn { display: flex; align-items: center; gap: 1.2rem; padding: 1.2rem 1.5rem; border-radius: 12px; border: 1px solid rgba(0,201,167,0.18); text-decoration: none; transition: all 0.2s; background: #0A1628; }
+  .contact-btn:hover { transform: translateX(6px); border-color: #00C9A7; }
+  .contact-btn-whatsapp:hover { border-color: #25D366; background: rgba(37,211,102,0.06); }
+  .contact-btn-email:hover { background: rgba(0,201,167,0.06); }
+  .contact-btn-phone:hover { border-color: #64C8FF; background: rgba(100,200,255,0.06); }
+  .contact-btn-anydesk:hover { border-color: #FF6B6B; background: rgba(255,107,107,0.06); }
+  .contact-btn-icon { font-size: 1.8rem; min-width: 2rem; text-align: center; }
+  .contact-btn-text { display: flex; flex-direction: column; flex: 1; }
+  .contact-btn-label { font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 1rem; color: #CCD6F6; }
+  .contact-btn-sub { font-size: 0.9rem; color: #8892B0; }
+  .contact-btn-arrow { font-size: 1.2rem; color: #00C9A7; font-weight: 700; }
+  .contact-response-note { font-size: 0.9rem; color: #8892B0; text-align: center; margin-top: 0.5rem; padding: 0.8rem; background: rgba(0,201,167,0.05); border-radius: 8px; border: 1px solid rgba(0,201,167,0.18); }
+
+  /* FOOTER */
+  footer { background: var(--navy); border-top: 1px solid var(--border); padding: 2.5rem 0; text-align: center; }
+  .footer-inner { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
+  .footer-logo { font-family: 'Space Grotesk', sans-serif; font-size: 1.3rem; font-weight: 700; color: var(--teal); margin-bottom: 0.5rem; }
+  .footer-tagline { font-size: var(--fs-sm); color: var(--slate); margin-bottom: 1rem; }
+  .footer-copy { font-size: var(--fs-xs); color: var(--slate); }
+  .footer-copy span { color: var(--teal); }
+
+  /* SCROLL */
+  .scroll-indicator { position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 0.4rem; color: var(--slate); font-size: var(--fs-xs); font-family: 'Space Grotesk', sans-serif; animation: bounce 2s infinite; }
+  @keyframes bounce { 0%,100%{transform:translateX(-50%) translateY(0);} 50%{transform:translateX(-50%) translateY(6px);} }
+  .scroll-arrow { font-size: 1.2rem; color: var(--teal); }
+
+  /* MOBILE */
+  @media (max-width: 768px) {
+    .nav-links { display: none; flex-direction: column; gap: 1rem; }
+    .nav-links.open { display: flex; position: absolute; top: 100%; left: 0; right: 0; background: var(--navy2); padding: 1.5rem 2rem; border-bottom: 1px solid var(--border); }
+    .hamburger { display: flex; }
+    .hero-grid, .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .hero-visual { order: -1; }
+    .hero h1 { font-size: 2.2rem; }
+    section { padding: 4rem 0; }
+    .about-stats { grid-template-columns: 1fr 1fr; }
+  }
+ .cert-badges { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.4rem; }
+.cert-badge { display: inline-flex; align-items: center; gap: 0.3rem; font-family: 'Space Grotesk', sans-serif; font-size: var(--fs-xs); font-weight: 600; padding: 0.25rem 0.7rem; border-radius: 20px; }
+.cert-ccna { background: rgba(0,201,167,0.12); color: var(--teal); border: 1px solid rgba(0,201,167,0.3); }
+.cert-dpo { background: rgba(100,200,255,0.1); color: #64C8FF; border: 1px solid rgba(100,200,255,0.25); }
+.why-item.cert-highlight { border-color: rgba(0,201,167,0.35); background: rgba(0,201,167,0.04); }
+.why-item.cert-highlight:hover { border-color: var(--teal); background: rgba(0,201,167,0.08); }
+.footer-certs { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; margin-bottom: 1rem; }
+.footer-cert-badge { display: inline-flex; align-items: center; gap: 0.4rem; font-family: 'Space Grotesk', sans-serif; font-size: var(--fs-xs); font-weight: 600; padding: 0.3rem 0.8rem; border-radius: 20px; }
+.footer-cert-ccna { background: rgba(0,201,167,0.12); color: var(--teal); border: 1px solid rgba(0,201,167,0.25); }
+.footer-cert-dpo { background: rgba(100,200,255,0.08); color: #64C8FF; border: 1px solid rgba(100,200,255,0.2); }
+.footer-cert-gdpr { background: rgba(255,200,100,0.08); color: #FFC864; border: 1px solid rgba(255,200,100,0.2); }
+
+.footer-cert-gdpr {
+    /* your existing code */
+}
+
+
+/* ===== CONTACT MESSAGE FORM ===== */
+
+.contact-form-box {
+    background: #07182d;
+    border: 1px solid #064d55;
+    border-radius: 12px;
+    padding: 22px;
+    margin-bottom: 16px;
+}
+
+.contact-form-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+.contact-form-box form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.contact-form-box input,
+.contact-form-box textarea {
+    width: 100%;
+    background: #0d213d;
+    border: 1px solid #24405f;
+    border-radius: 8px;
+    padding: 14px 16px;
+    color: white;
+    font-size: 15px;
+    font-family: inherit;
+    outline: none;
+}
+
+.contact-form-box input:focus,
+.contact-form-box textarea:focus {
+    border-color: #00d4c3;
+}
+
+.contact-form-box input::placeholder,
+.contact-form-box textarea::placeholder {
+    color: #8398c7;
+}
+
+.contact-form-box textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.contact-form-box button {
+    background: #00d4c3;
+    color: #06182c;
+    border: none;
+    border-radius: 8px;
+    padding: 14px 20px;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.contact-form-box button:hover {
+    opacity: 0.9;
+}
+
+/* Gallery navigation arrows */
+.gallery-prev,
+.gallery-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    font-size: 16px;
+    z-index: 2;
+}
+
+.gallery-prev {
+    left: 8px;
+}
+
+.gallery-next {
+    right: 8px;
+}
+
+/* Image counter */
+.gallery-counter {
+    position: absolute;
+    bottom: 8px;
+    right: 10px;
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    font-size: 12px;
+    padding: 2px 8px;
+    border-radius: 10px;
+}
+
+/* Gallery thumbnails */
+.gallery-thumbnails {
+    display: flex;
+    gap: 6px;
+    padding: 8px;
+}
+
+.gallery-thumbnails img {
+    width: calc(50% - 3px);
+    height: 60px;
+    object-fit: cover;
+    border-radius: 6px;
+    cursor: pointer;
+    border: 2px solid transparent;
+    opacity: 0.6;
+    box-sizing: border-box;
+}
+
+.gallery-thumbnails img:first-child {
+    border-color: #00C9A7;
+    opacity: 1;
+}
+
+
+  /* CYBERSECURITY PRICING */
+  #pricing { background:var(--navy2); }
+  .pricing-intro { max-width:680px; margin-bottom:2rem; }
+  .pricing-standalone { background:var(--navy); border:1px solid rgba(0,201,167,.38); border-radius:var(--radius); padding:1.8rem; display:flex; align-items:center; justify-content:space-between; gap:1.5rem; flex-wrap:wrap; margin-bottom:2rem; }
+  .pricing-standalone h3 { font-size:var(--fs-xl); margin:.35rem 0 .55rem; }
+  .pricing-standalone p { font-size:var(--fs-sm); max-width:640px; }
+  .pricing-eyebrow { color:var(--teal); font-family:'Space Grotesk',sans-serif; font-size:var(--fs-xs); font-weight:600; letter-spacing:1.3px; text-transform:uppercase; }
+  .pricing-amount { font-family:'Space Grotesk',sans-serif; color:var(--white); font-weight:700; font-size:2.2rem; line-height:1.2; white-space:nowrap; }
+  .pricing-amount small { font-size:.85rem; color:var(--slate); font-weight:400; }
+  .pricing-plans { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:1.2rem; }
+  .pricing-plan { display:flex; flex-direction:column; background:var(--navy); border:1px solid var(--border); border-radius:var(--radius); padding:1.7rem; }
+  .pricing-plan.featured { border-color:var(--teal); box-shadow:0 0 0 1px rgba(0,201,167,.14); }
+  .pricing-plan h3 { font-size:var(--fs-xl); margin:.4rem 0; }
+  .pricing-plan .pricing-description { font-size:var(--fs-sm); margin:1rem 0; min-height:3rem; }
+  .pricing-features { list-style:none; margin:0 0 1.6rem; padding:0; flex:1; }
+  .pricing-features li { color:var(--light); font-size:var(--fs-sm); padding:.48rem 0 .48rem 1.35rem; position:relative; line-height:1.5; }
+  .pricing-features li::before { content:'✓'; position:absolute; left:0; color:var(--teal); }
+  .pricing-plan .btn-outline, .pricing-plan .btn-primary { text-align:center; margin:0; }
+  .pricing-note { font-size:var(--fs-xs); margin-top:1.5rem; line-height:1.7; }
+  @media (max-width:850px) { .pricing-plans { grid-template-columns:1fr; } .pricing-plan .pricing-description { min-height:0; } }
+
+
+
+/* Language navigation: visible at the upper right on every screen size. */
+.nav-inner { max-width:1320px; gap:1rem; }
+.logo { flex-shrink:0; }
+.logo img { height:88px !important; max-width:140px; object-fit:contain; }
+.nav-links { margin-left:auto; gap:clamp(.65rem,1.05vw,1.1rem); align-items:center; }
+.nav-links a { font-size:.83rem; white-space:nowrap; }
+.nav-cta { padding:.45rem .8rem; }
+.nav-actions { display:flex; align-items:center; gap:.65rem; flex-shrink:0; }
+.language-switcher { display:flex; align-items:center; gap:3px; padding:3px; border:1px solid var(--border); border-radius:8px; }
+
+
+
+
+.hamburger { background:none; border:0; padding:10px; width:44px; height:44px; align-items:center; justify-content:center; flex-shrink:0; }
+section[id] { scroll-margin-top:125px; }
+.hero-text, .hero-visual, .about-text, .pricing-plan, .service-card { min-width:0; }
+.hero-text > div { display:flex; flex-wrap:wrap; gap:.8rem; }
+.hero-text .btn-primary { margin-right:0; }
+.hero-text .btn-primary, .hero-text .btn-outline { text-align:center; max-width:100%; }
+.device-name { min-width:0; padding-right:.5rem; }
+.device-status { flex-shrink:0; }
+@media (max-width:1150px) {
+  .nav-links { display:none; flex-direction:column; gap:1rem; margin-left:0; align-items:stretch; }
+  .nav-links.open { display:flex; position:absolute; top:100%; left:0; right:0; background:var(--navy2); padding:1.5rem 2rem; border-bottom:1px solid var(--border); max-height:calc(100dvh - 125px); overflow:auto; }
+  .nav-links a { display:block; font-size:var(--fs-sm); }
+  .nav-links .nav-cta { display:inline-block; }
+  .hamburger { display:flex; }
+  .nav-actions { margin-left:auto; }
+}
+@media (max-width:768px) {
+  nav { padding:.65rem 0; }
+  .nav-inner { padding:0 1rem; gap:.5rem; }
+  .logo img { height:60px !important; max-width:100px; }
+  .nav-actions { gap:.35rem; }
+  
+  section[id] { scroll-margin-top:90px; }
+  .nav-links.open { max-height:calc(100dvh - 85px); }
+  .hero-card { padding:1.25rem; }
+  #hero { padding-top:7rem; padding-bottom:6rem; }
+}
+@media (max-width:400px) {
+  .container { padding:0 1rem; }
+  .services-grid, .media-grid { grid-template-columns:minmax(0,1fr); }
+  .founder-card { flex-wrap:wrap; }
+  .pricing-standalone, .pricing-plan { padding:1.2rem; }
+  #security > div { padding-left:1rem !important; padding-right:1rem !important; }
+  #gm-checklist { grid-template-columns:minmax(0,1fr) !important; }
+  #security a { white-space:normal !important; text-align:center; }
+}
+@media (prefers-reduced-motion:reduce) {
+  html { scroll-behavior:auto; }
+  *, *::before, *::after { animation:none !important; transition:none !important; }
+}
+
+/* One language dropdown at the upper right. */
+.language-switcher { position:relative; display:flex; align-items:center; padding:0; border:0; border-radius:8px; }
+.language-select { appearance:none; -webkit-appearance:none; width:146px; min-height:44px; padding:.55rem 2rem .55rem .8rem; border:1px solid rgba(0,201,167,.45); border-radius:8px; background:var(--navy2); color:var(--light); font-family:'Space Grotesk',sans-serif; font-size:.83rem; font-weight:600; cursor:pointer; color-scheme:dark; }
+.language-select:hover { border-color:var(--teal); }
+.language-select:focus-visible { outline:2px solid var(--teal); outline-offset:3px; }
+.language-select option { color:var(--light); background:var(--navy2); }
+.language-switcher::after { content:'⌄'; position:absolute; right:.7rem; top:50%; transform:translateY(-58%); font-size:1.1rem; color:var(--teal); pointer-events:none; }
+.sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip-path:inset(50%); white-space:nowrap; border:0; }
+@media (max-width:400px) {
+  .language-select { width:120px; font-size:.78rem; padding-left:.6rem; padding-right:1.6rem; }
+  .language-switcher::after { right:.5rem; }
+}
+
+/* IT consulting and service navigation */
+.services-nav-item { position:relative; }
+.services-dropdown { position:relative; }
+.services-dropdown summary { display:flex; align-items:center; gap:.35rem; list-style:none; cursor:pointer; color:var(--slate); font-family:'Space Grotesk',sans-serif; font-size:.83rem; font-weight:500; white-space:nowrap; }
+.services-dropdown summary::-webkit-details-marker { display:none; }
+.services-dropdown summary:hover, .services-dropdown[open] summary { color:var(--teal); }
+.services-dropdown summary:focus-visible { outline:2px solid var(--teal); outline-offset:5px; border-radius:3px; }
+.services-chevron { color:var(--teal); transition:transform .2s; }
+.services-dropdown[open] .services-chevron { transform:rotate(180deg); }
+.services-submenu { position:absolute; top:calc(100% + 1rem); left:-.8rem; z-index:110; width:max-content; min-width:220px; max-width:calc(100vw - 2rem); padding:.5rem; margin:0; list-style:none; background:var(--navy2); border:1px solid rgba(0,201,167,.35); border-radius:10px; box-shadow:0 12px 30px rgba(0,0,0,.3); }
+.services-submenu a { display:block; padding:.7rem .8rem; border-radius:6px; color:var(--light); line-height:1.4; }
+.services-submenu a:hover, .services-submenu a:focus-visible { color:var(--teal); background:rgba(0,201,167,.08); }
+.it-card-link { display:inline-block; margin-top:1.2rem; color:var(--teal); font-size:var(--fs-sm); font-weight:600; }
+#it-consulting { background:var(--navy2); }
+.it-consulting-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:1.5rem; }
+.it-consulting-grid .service-card { background:var(--navy); }
+.it-consulting-cta { margin-top:2rem; }
+.it-consulting-cta .btn-primary { text-align:center; }
+@media (max-width:1150px) {
+ .services-dropdown summary { font-size:var(--fs-sm); padding:.15rem 0; }
+ .services-submenu { position:static; width:auto; min-width:0; max-width:100%; margin-top:.75rem; box-shadow:none; }
+ .services-submenu a { white-space:normal; }
+}
+@media (max-width:640px) { .it-consulting-grid { grid-template-columns:minmax(0,1fr); } }
+
+/* IT experience profile */
+.it-consulting-intro { max-width:880px; }
+
+/* Focused service destinations; one selected service is shown at a time. */
+.service-category-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:1.5rem; }
+.service-category { display:flex; flex-direction:column; }
+.service-category-link { display:inline-block; align-self:flex-start; margin-top:auto; padding-top:1.4rem; color:var(--teal); font-size:var(--fs-sm); font-weight:600; }
+.smart-home-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:1.5rem; }
+.cybersecurity-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:1.5rem; }
+.service-panel[hidden] { display:none !important; }
+#smart-home, #cybersecurity { background:var(--navy); }
+#cybersecurity { padding-bottom:0; }
+.service-panel .section-sub { max-width:850px; }
+.service-panel-actions { display:flex; align-items:center; flex-wrap:wrap; gap:1rem; margin-top:2rem; }
+.service-panel-actions .btn-primary { margin-right:0; }
+.service-panel-actions .btn-primary, .service-panel-actions .btn-outline { text-align:center; }
+.service-back-link { font-size:var(--fs-sm); font-weight:600; padding:.7rem 0; }
+.services-submenu a[aria-current="location"] { color:var(--teal); background:rgba(0,201,167,.08); }
+@media (max-width:950px) { .service-category-grid, .cybersecurity-grid { grid-template-columns:minmax(0,1fr); } }
+@media (max-width:640px) { .smart-home-grid { grid-template-columns:minmax(0,1fr); } }
+
+/* Business assessments are separate from optional annual home protection. */
+#business-assessments { background:var(--navy2); }
+.business-pricing-intro { max-width:850px; }
+.business-assessment-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:1.5rem; }
+.business-assessment-card { display:flex; flex-direction:column; min-width:0; padding:2rem; border:1px solid rgba(0,201,167,.35); border-radius:var(--radius); background:var(--navy); }
+.business-assessment-card h3 { font-size:var(--fs-xl); line-height:1.35; margin:.6rem 0 1rem; }
+.business-package-price { font-family:'Space Grotesk',sans-serif; font-size:2.7rem; font-weight:700; color:var(--teal); line-height:1.1; }
+.business-package-vat { font-size:var(--fs-sm); margin:.3rem 0 1.6rem; }
+.business-package-fit { font-weight:600; color:var(--light); margin-bottom:1rem; }
+.business-package-description { flex:1; margin-bottom:1rem; }
+.business-package-delivery { font-size:var(--fs-sm); margin-bottom:1.5rem; }
+.business-package-cta { align-self:flex-start; text-align:center; margin:0; }
+.business-package-terms { margin-top:1.5rem; padding:1.5rem; border:1px solid var(--border); border-radius:var(--radius); background:rgba(0,201,167,.035); }
+.business-package-terms h3 { font-size:var(--fs-lg); margin-bottom:.8rem; }
+.business-package-terms p { font-size:var(--fs-sm); margin:.6rem 0; }
+@media (max-width:700px) { .business-assessment-grid { grid-template-columns:minmax(0,1fr); } }
+@media (max-width:400px) { .business-assessment-card { padding:1.3rem; } }
+</style>
+ 
+<link rel="canonical" href="https://guardmesh.be/"></head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <div class="logo">
+  <img src="Logo.png" style="height:120px; width:auto; vertical-align:middle; filter: brightness(0) invert(1);" alt="GuardMesh">
+
+</div>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#about">About</a></li>
+      <li class="services-nav-item"><details id="gm-services-dropdown" class="services-dropdown"><summary>Services <span class="services-chevron" aria-hidden="true">⌄</span></summary><ul class="services-submenu"><li><a href="#smart-home">Smart Home Automation</a></li><li><a href="#cybersecurity">Cybersecurity</a></li><li><a href="#it-consulting">IT Consulting</a></li></ul></details></li><li><a href="#business-assessments">Pricing</a></li>
+     <li><a href="#security">Security Check</a></li>
+      <li><a href="#why">Why GuardMesh</a></li>
+      <li><a href="#media">Portfolio</a></li>
+      <li><a href="#contact" class="nav-cta">Contact us</a></li>
+    </ul>
+    <div class="nav-actions"><div class="language-switcher"><label for="gm-language" class="sr-only">Language</label><select id="gm-language" class="language-select" aria-label="Language"><option value="en" lang="en" selected>English</option><option value="fr" lang="fr">Français</option><option value="nl" lang="nl">Nederlands</option></select></div><button type="button" class="hamburger" id="hamburger" aria-label="Open or close the menu" aria-controls="navLinks" aria-expanded="false"><span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span></button></div></div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-glow"></div>
+  <div class="container">
+    <div class="hero-grid">
+      <div class="hero-text">
+        <span class="hero-tag">Smart Home · Cybersecurity · IT Consulting · Belgium</span>
+        <h1>Your Home should be<br><em>Smart, Private,</em><br>&amp; Secure.</h1><p class="hero-sub">We make it happen — local control, privacy-focused smart home systems, and practical network security from day one.</p>
+        <p class="hero-location">📍 Sint-Pieters-Leeuw, <span>1600 Belgium</span> — serving the wider Brussels region</p>
+        <div>
+          <a href="#contact" class="btn-primary">Get a free consultation</a>
+          <a href="#services" class="btn-outline">Our services</a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-card">
+          <div class="hero-card-title">Live home dashboard — GuardMesh setup</div>
+          <div class="metric-row">
+            <div class="metric">
+              <span class="metric-val">2.4<small style="font-size:0.9rem">kW</small></span>
+              <span class="metric-label">Energy now</span>
+            </div>
+            <div class="metric">
+              <span class="metric-val">€38</span>
+              <span class="metric-label">Monthly cost</span>
+            </div>
+          </div>
+          <div class="device-list">
+            <div class="device-item">
+              <span class="device-name">🔌 Device Plug/Relay</span>
+              <span class="device-status status-on">ON</span>
+            </div>
+            <div class="device-item">
+              <span class="device-name">💡 Smart lights</span>
+              <span class="device-status status-on">AUTO</span>
+            </div>
+            <div class="device-item">
+              <span class="device-name">📷 Reolink camera</span>
+              <span class="device-status status-secure">SECURE</span>
+            </div>
+            <div class="device-item">
+              <span class="device-name">🔒 Network</span>
+              <span class="device-status status-secure">PROTECTED</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-indicator">
+    <span>Scroll</span>
+    <span class="scroll-arrow">↓</span>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-text">
+        <!-- FOUNDER -->
+        <div class="founder-card">
+          <img src="photo.jpeg" alt="GuardMesh founder" class="founder-photo">
+          <div class="founder-info">
+            <span class="founder-role">CEO</span>
+            <span class="founder-name">Eng. Hadi Azzam</span>
+            <span class="founder-tag">IT Infrastructure · Smart Home · Cybersecurity</span>
+           <div class="cert-badges">
+  <span class="cert-badge cert-ccna">🏅 CCNA Certified</span>
+  <span class="cert-badge cert-dpo">🔒 Certified DPO</span>
+</div>
+          </div>
+        </div>
+        <span class="section-tag">About GuardMesh</span>
+        <h2 class="section-title">Local expertise.<br>Real results.</h2>
+        <div class="section-divider"></div>
+        <p>GuardMesh is a Belgium-based technology consultancy specialising in IT infrastructure, cybersecurity and smart home automation. We help businesses maintain reliable systems and support homeowners with secure, privacy-focused automation.</p>
+        <p>Based in Sint-Pieters-Leeuw, we serve clients across the Brussels region and beyond. Every installation is tailored to your needs — from a single smart switch to a fully automated, secured home ecosystem.</p>
+        <p>We believe your home should work for you, not for a tech company's servers. That's why we build local-first systems that keep your data at home and your network locked down.</p>
+      </div>
+      <div class="about-stats">
+        <div class="stat-box">
+          <span class="stat-num">100%</span>
+          <span class="stat-desc">Local control — no forced cloud</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-num">24/7</span>
+          <span class="stat-desc">Remote support available</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-num">12+</span>
+          <span class="stat-desc">Years of hands-on experience</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-num">🇧🇪</span>
+          <span class="stat-desc">Sint-Pieters-Leeuw, Belgium</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECURITY ASSESSMENT SECTION -->
+<!-- Paste this entire block BETWEEN </section> of About and <!-- HOME CYBERSECURITY PRICING -->
+<!-- SECURITY -->
+<script>var gmHasInteracted = false;
+
+function gmToggle(el) {
+  gmHasInteracted = true;
+  var isChecked = el.getAttribute('data-checked') === '1';
+  if (isChecked) {
+    el.setAttribute('data-checked', '0');
+    el.style.borderColor = 'rgba(0,201,167,0.18)';
+    el.style.background = '#112240';
+    el.querySelector('.gm-tick').style.display = 'none';
+    el.querySelector('.gm-box').style.background = '#0A1628';
+  } else {
+    el.setAttribute('data-checked', '1');
+    el.style.borderColor = '#00C9A7';
+    el.style.background = 'rgba(0,201,167,0.06)';
+    el.querySelector('.gm-tick').style.display = 'block';
+    el.querySelector('.gm-box').style.background = 'rgba(0,201,167,0.15)';
+  }
+  el.setAttribute('aria-checked', String(!isChecked));
+  gmUpdateScore();
+}
+function gmUpdateScore() {
+  var items = document.querySelectorAll('.gm-item');
+  var checked = 0;
+  items.forEach(function(i){ if(i.getAttribute('data-checked')==='1') checked++; });
+  var total = items.length;
+  var pct = Math.round((checked / total) * 100);
+  document.getElementById('gm-score-txt').textContent = checked + ' / ' + total + gmLanguageData.scoreSuffix[document.documentElement.lang];
+  var fill = document.getElementById('gm-score-fill');
+  fill.style.width = pct + '%';
+  fill.style.background = pct < 40 ? '#E24B4A' : pct < 70 ? '#EF9F27' : '#00C9A7';
+  var txt = document.getElementById('gm-alert-txt');
+  var box = document.getElementById('gm-alert');
+  if (!gmHasInteracted) {
+    txt.textContent = gmText(gmLanguageData.initialAlert);
+    txt.style.color = '#EF9F27';
+    box.style.borderColor = 'rgba(239,159,39,0.4)';
+    box.style.background = 'rgba(239,159,39,0.08)';
+    return;
+  }
+
+  if (pct === 100) {
+    txt.textContent = gmText("Great job! Your home security looks solid. Contact GuardMesh for a professional audit to confirm everything is properly configured.");
+    txt.style.color = '#00C9A7';
+    box.style.borderColor = 'rgba(0,201,167,0.4)';
+    box.style.background = 'rgba(0,201,167,0.06)';
+  } else if (pct >= 70) {
+    txt.textContent = gmText("You have good security habits but a few gaps remain. GuardMesh can help you close them completely.");
+    txt.style.color = '#EF9F27';
+    box.style.borderColor = 'rgba(239,159,39,0.4)';
+    box.style.background = 'rgba(239,159,39,0.08)';
+  } else if (pct >= 40) {
+    txt.textContent = gmText("Several risks detected. Your home network and personal data may be exposed. GuardMesh can fix these gaps quickly.");
+    txt.style.color = '#EF9F27';
+    box.style.borderColor = 'rgba(239,159,39,0.4)';
+    box.style.background = 'rgba(239,159,39,0.08)';
+  } else {
+    txt.textContent = gmText("Your home has significant security risks. If you answered \"No\" to several of these, your data and devices may be exposed. GuardMesh can help you fix every gap.");
+    txt.style.color = '#EF9F27';
+    box.style.borderColor = 'rgba(239,159,39,0.4)';
+    box.style.background = 'rgba(239,159,39,0.08)';
+  }
+}
+</script>
+
+<!-- END SECURITY ASSESSMENT SECTION -->
+
+<!-- SERVICES -->
+<section id="services"><div class="container"><span class="section-tag">Our services</span><h2 class="section-title">Choose the service you need.</h2><div class="section-divider"></div><p class="section-sub">Three areas of expertise, with a clear offer for each.</p><div class="service-category-grid"><div class="service-card service-category"><span class="service-icon" aria-hidden="true">🏠</span><h3>Smart Home Automation</h3><p>Local control, tailored automations and simple dashboards for your home.</p><a href="#smart-home" class="service-category-link">View smart home services</a></div><div class="service-card service-category"><span class="service-icon" aria-hidden="true">🔒</span><h3>Cybersecurity</h3><p>Assess and improve the security of your home network, accounts and connected devices.</p><a href="#cybersecurity" class="service-category-link">View cybersecurity services</a></div><div class="service-card service-category"><span class="service-icon" aria-hidden="true">🖥️</span><h3>IT Consulting</h3><p>Business infrastructure, Microsoft 365, servers, backups and user support.</p><a href="#it-consulting" class="service-category-link">View IT consulting services</a></div></div></div></section><div id="gm-service-panels"><section id="smart-home" class="service-panel" data-service-panel=""><div class="container"><span class="section-tag">Smart Home Automation</span><h2 class="section-title">Your home, working the way you want.</h2><div class="section-divider"></div><p class="section-sub">Home Assistant installation, tailored automations, clear dashboards and ongoing support for your smart home.</p><div class="smart-home-grid"><div class="service-card"><span class="service-icon" aria-hidden="true">🏠</span><h3>Home Assistant Installation</h3><p>Install and configure Home Assistant to bring your lighting, heating and connected devices together in one system.</p><div class="service-tags"><span class="tag">Home Assistant</span><span class="tag">Local control setup</span></div></div><div class="service-card"><span class="service-icon" aria-hidden="true">⚙️</span><h3>Automations &amp; Schedules</h3><p>Create routines and schedules for lights, heating, sensors and connected devices, tailored to how you live.</p><div class="service-tags"><span class="tag">Automation</span><span class="tag">Planning</span></div></div><div class="service-card"><span class="service-icon" aria-hidden="true">🎛️</span><h3>Dashboards &amp; Device Integration</h3><p>Bring compatible cameras, switches, sensors and appliances into clear dashboards for day-to-day control.</p><div class="service-tags"><span class="tag">Dashboards</span><span class="tag">Integrations</span><span class="tag">Reolink</span></div></div><div class="service-card"><span class="service-icon" aria-hidden="true">🛠️</span><h3>Smart Home Maintenance</h3><p>Troubleshooting, updates and remote assistance for your Home Assistant setup and connected devices.</p><div class="service-tags"><span class="tag">Maintenance</span><span class="tag">Updates</span><span class="tag">Remote Assistance</span></div></div></div><div class="service-panel-actions"><a href="#contact" class="btn-primary">Discuss your smart home</a><a href="#services" class="service-back-link">← All services</a></div></div></section><section id="cybersecurity" class="service-panel" data-service-panel=""><div class="container"><span class="section-tag">Cybersecurity</span><h2 class="section-title">Cybersecurity for your home and business.</h2><div class="section-divider"></div><p class="section-sub">Choose a business security assessment or explore home network protection. Clear scope, practical recommendations and pricing agreed before booking.</p><div class="cybersecurity-grid"><div class="service-card"><span class="service-icon" aria-hidden="true">🌐</span><h3>Home Network Security</h3><p>Secure your home network from the ground up. Network segmentation, firewall setup, device hardening, VPN access, and security reviews of your connected devices.</p><div class="service-tags"><span class="tag">Network Security</span><span class="tag">Firewall</span><span class="tag">IoT Protection</span></div></div><div class="service-card"><span class="service-icon" aria-hidden="true">🔐</span><h3>Account &amp; Device Protection</h3><p>Help with multifactor authentication, password managers, device settings and backup security guidance.</p><div class="service-tags"><span class="tag">Multi-Factor Authentication</span><span class="tag">Password manager setup</span></div></div><div class="service-card"><span class="service-icon" aria-hidden="true">🔒</span><h3>Private Remote Access</h3><p>Control your home from anywhere in the world — securely, without cloud subscriptions. We set up VPN so your smart home is always reachable, always private.</p><div class="service-tags"><span class="tag">VPN</span><span class="tag">Remote Control</span></div></div></div><div class="service-panel-actions"><a href="#business-assessments" class="btn-primary">Business assessments</a><a href="#pricing" class="btn-outline">Home protection plans</a><a href="#services" class="service-back-link">← All services</a></div></div><section id="business-assessments" class="business-assessment-section"><div class="container"><span class="section-tag">Business customers · Prices excluding VAT</span><h2 class="section-title">Business Cybersecurity Assessments</h2><div class="section-divider"></div><p class="section-sub business-pricing-intro">Clear pricing. One-off assessments. No subscription or automatic renewal.</p><div class="business-assessment-grid"><article class="business-assessment-card"><span class="pricing-eyebrow">One-off assessment</span><h3>BASIC | Security Quick Check</h3><div class="business-package-price">€390</div><p class="business-package-vat">Excluding VAT</p><p class="business-package-fit">For freelancers and very small businesses with 1–3 users.</p><p class="business-package-description">A focused review of your business account and device security, with written findings and prioritized recommendations.</p><p class="business-package-delivery">Delivered remotely.</p><a href="#contact" class="btn-primary business-package-cta">Request a Quick Check</a></article><article class="business-assessment-card"><span class="pricing-eyebrow">One-off assessment</span><h3>STANDARD | Business Security Health Check</h3><div class="business-package-price">€690</div><p class="business-package-vat">Excluding VAT</p><p class="business-package-fit">For small businesses with up to 10 users at one location.</p><p class="business-package-description">A broader review of your business IT security and relevant GDPR security safeguards, with a written report and a prioritized improvement plan.</p><p class="business-package-delivery">Delivered remotely or on-site, as agreed.</p><a href="#contact" class="btn-primary business-package-cta">Request a Business Health Check</a></article></div><div class="business-package-terms"><h3>Clear terms before you book</h3><p>A one-off cybersecurity assessment with written findings and practical recommendations.</p><p>Your assessment scope, deliverables and total cost are agreed in writing before booking. Additional work requires a separate quote and your approval.</p><p>No subscription, automatic renewal or recurring charges.</p><p>The detailed assessment agreement is provided before you confirm your booking.</p></div></div></section><section id="pricing">
+  <div class="container">
+    <span class="section-tag">Clear pricing</span>
+    <h2 class="section-title">Home cybersecurity &amp; pricing</h2>
+    <div class="section-divider"></div>
+    <p class="section-sub pricing-intro">For your home: start with a one-time network assessment or choose an optional annual protection plan. Annual home plans are separate from the one-off business assessments above.</p>
+
+    <div class="pricing-standalone">
+      <div>
+        <span class="pricing-eyebrow">One-time service · No subscription</span>
+        <h3>Home Network Security Assessment</h3>
+        <p>We visit your home with our KBE Cybersecurity Assessment Box to discover visible network devices, review detectable services and potential security risks, and provide a network overview and PDF report with practical recommendations.</p>
+      </div>
+      <div>
+        <div class="pricing-amount">€149 <small>/ one time</small></div>
+        <a href="#contact" class="btn-primary" style="margin:1rem 0 0;">Book an assessment</a>
+      </div>
+    </div>
+
+    <h3 style="font-size:var(--fs-xl);margin-bottom:.5rem;">Annual protection plans</h3>
+    <p style="font-size:var(--fs-sm);margin-bottom:1.5rem;">Each annual plan includes an initial on-site home network security assessment, plus the services listed below.</p>
+    <div class="pricing-plans">
+      <article class="pricing-plan">
+        <span class="pricing-eyebrow">Core protection</span>
+        <h3>Essential</h3>
+        <div class="pricing-amount">€199 <small>/ year</small></div>
+        <p class="pricing-description">A professional cybersecurity baseline and ongoing awareness.</p>
+        <ul class="pricing-features">
+          <li>On-site home network security assessment</li>
+          <li>Wi-Fi &amp; device security review</li>
+          <li>Practical security advice</li>
+          <li>Firmware security update guidance</li>
+          <li>Monthly awareness emails</li>
+        </ul>
+        <a href="#contact" class="btn-outline">Ask about Essential</a>
+      </article>
+      <article class="pricing-plan featured">
+        <span class="pricing-eyebrow">Enhanced protection · Popular choice</span>
+        <h3>Standard</h3>
+        <div class="pricing-amount">€299 <small>/ year</small></div>
+        <p class="pricing-description">Extra help protecting accounts, devices and personal data.</p>
+        <ul class="pricing-features">
+          <li>Everything in Essential</li>
+          <li>Account security &amp; malware checks</li>
+          <li>Password, login &amp; backup security guidance</li>
+          <li>Annual cybersecurity support call (1/year)</li>
+        </ul>
+        <a href="#contact" class="btn-primary">Ask about Standard</a>
+      </article>
+      <article class="pricing-plan">
+        <span class="pricing-eyebrow">Comprehensive protection</span>
+        <h3>Premium</h3>
+        <div class="pricing-amount">€449 <small>/ year</small></div>
+        <p class="pricing-description">Advanced reviews, priority support and extra visits.</p>
+        <ul class="pricing-features">
+          <li>Everything in Standard</li>
+          <li>Advanced network &amp; smart device security review</li>
+          <li>Priority cybersecurity support (2 calls/year)</li>
+          <li>Additional on-site security visits (2/year)</li>
+        </ul>
+        <a href="#contact" class="btn-outline">Ask about Premium</a>
+      </article>
+    </div>
+    <p class="pricing-note">The €149 assessment is a one-time service; annual plans include additional guidance and support. Assessments identify observable devices, services and potential risks, but cannot guarantee that every vulnerability will be found. Visits are subject to service-area and scope confirmation.</p>
+  </div>
+</section>
+
+<section id="security" style="padding: 6rem 0; background: var(--navy);">
+  <div style="max-width:1100px; margin:0 auto; padding:0 2rem;">
+
+    <!-- Header -->
+    <span style="font-family:'Space Grotesk',sans-serif; font-size:0.78rem; font-weight:600; color:#00C9A7; letter-spacing:2px; text-transform:uppercase; margin-bottom:0.8rem; display:block;">Security assessment</span>
+    <h2 style="font-family:'Space Grotesk',sans-serif; font-size:clamp(1.8rem,3.5vw,2.8rem); color:#E6F1FF; margin-bottom:0.8rem;">Is your home really secure?</h2>
+    <p style="font-size:1.15rem; color:#8892B0; max-width:580px; margin-bottom:2.5rem;">Tick every item that applies to your home and see your security score instantly.</p>
+
+    <!-- Score bar -->
+    <div style="margin-bottom:2rem;">
+      <div style="display:flex; justify-content:space-between; font-family:'Space Grotesk',sans-serif; font-size:0.85rem; color:#8892B0; margin-bottom:0.5rem;">
+        <span>Your security score</span>
+        <span id="gm-score-txt">0 / 9 secured</span>
+      </div>
+      <div style="height:8px; background:#112240; border-radius:4px; overflow:hidden; border:1px solid rgba(0,201,167,0.18);">
+        <div id="gm-score-fill" style="height:100%; width:0%; border-radius:4px; background:#E24B4A; transition:width 0.4s, background 0.4s;"></div>
+      </div>
+    </div>
+
+    <!-- Checklist -->
+    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:10px; margin-bottom:2rem;" id="gm-checklist">
+
+      <div class="gm-item" onclick="gmToggle(this)" style="display:flex; align-items:flex-start; gap:12px; padding:1rem 1.2rem; background:#112240; border:1px solid rgba(0,201,167,0.18); border-radius:10px; cursor:pointer; transition:border-color 0.2s;" role="checkbox" tabindex="0" aria-checked="false">
+        <div class="gm-box" style="width:20px; height:20px; min-width:20px; border:1px solid rgba(0,201,167,0.4); border-radius:4px; background:#0A1628; display:flex; align-items:center; justify-content:center; margin-top:2px;">
+          <span class="gm-tick" style="display:none; color:#00C9A7; font-size:14px; font-weight:700;">✓</span>
+        </div>
+        <span style="font-size:0.9rem; color:#CCD6F6; line-height:1.5;">My router is properly secured with a strong unique password</span>
+      </div>
+
+      <div class="gm-item" onclick="gmToggle(this)" style="display:flex; align-items:flex-start; gap:12px; padding:1rem 1.2rem; background:#112240; border:1px solid rgba(0,201,167,0.18); border-radius:10px; cursor:pointer; transition:border-color 0.2s;" role="checkbox" tabindex="0" aria-checked="false">
+        <div class="gm-box" style="width:20px; height:20px; min-width:20px; border:1px solid rgba(0,201,167,0.4); border-radius:4px; background:#0A1628; display:flex; align-items:center; justify-content:center; margin-top:2px;">
+          <span class="gm-tick" style="display:none; color:#00C9A7; font-size:14px; font-weight:700;">✓</span>
+        </div>
+        <span style="font-size:0.9rem; color:#CCD6F6; line-height:1.5;">Multi-Factor Authentication (MFA) is enabled on all my important accounts</span>
+      </div>
+
+      <div class="gm-item" onclick="gmToggle(this)" style="display:flex; align-items:flex-start; gap:12px; padding:1rem 1.2rem; background:#112240; border:1px solid rgba(0,201,167,0.18); border-radius:10px; cursor:pointer; transition:border-color 0.2s;" role="checkbox" tabindex="0" aria-checked="false">
+        <div class="gm-box" style="width:20px; height:20px; min-width:20px; border:1px solid rgba(0,201,167,0.4); border-radius:4px; background:#0A1628; display:flex; align-items:center; justify-content:center; margin-top:2px;">
+          <span class="gm-tick" style="display:none; color:#00C9A7; font-size:14px; font-weight:700;">✓</span>
+        </div>
+        <span style="font-size:0.9rem; color:#CCD6F6; line-height:1.5;">My connected devices(cameras,doorbells,smart TVs) are isolated &amp; protected from unauthorized access</span>
+      </div>
+
+      <div class="gm-item" onclick="gmToggle(this)" style="display:flex; align-items:flex-start; gap:12px; padding:1rem 1.2rem; background:#112240; border:1px solid rgba(0,201,167,0.18); border-radius:10px; cursor:pointer; transition:border-color 0.2s;" role="checkbox" tabindex="0" aria-checked="false">
+        <div class="gm-box" style="width:20px; height:20px; min-width:20px; border:1px solid rgba(0,201,167,0.4); border-radius:4px; background:#0A1628; display:flex; align-items:center; justify-content:center; margin-top:2px;">
+          <span class="gm-tick" style="display:none; color:#00C9A7; font-size:14px; font-weight:700;">✓</span>
+        </div>
+        <span style="font-size:0.9rem; color:#CCD6F6; line-height:1.5;">I have secure remote access to my home devices via VPN</span>
+      </div>
+
+      <div class="gm-item" onclick="gmToggle(this)" style="display:flex; align-items:flex-start; gap:12px; padding:1rem 1.2rem; background:#112240; border:1px solid rgba(0,201,167,0.18); border-radius:10px; cursor:pointer; transition:border-color 0.2s;" role="checkbox" tabindex="0" aria-checked="false">
+        <div class="gm-box" style="width:20px; height:20px; min-width:20px; border:1px solid rgba(0,201,167,0.4); border-radius:4px; background:#0A1628; display:flex; align-items:center; justify-content:center; margin-top:2px;">
+          <span class="gm-tick" style="display:none; color:#00C9A7; font-size:14px; font-weight:700;">✓</span>
+        </div>
+        <span style="font-size:0.9rem; color:#CCD6F6; line-height:1.5;">My smart devices are isolated from my personal computers and phones</span>
+      </div>
+
+      <div class="gm-item" onclick="gmToggle(this)" style="display:flex; align-items:flex-start; gap:12px; padding:1rem 1.2rem; background:#112240; border:1px solid rgba(0,201,167,0.18); border-radius:10px; cursor:pointer; transition:border-color 0.2s;" role="checkbox" tabindex="0" aria-checked="false">
+        <div class="gm-box" style="width:20px; height:20px; min-width:20px; border:1px solid rgba(0,201,167,0.4); border-radius:4px; background:#0A1628; display:flex; align-items:center; justify-content:center; margin-top:2px;">
+          <span class="gm-tick" style="display:none; color:#00C9A7; font-size:14px; font-weight:700;">✓</span>
+        </div>
+        <span style="font-size:0.9rem; color:#CCD6F6; line-height:1.5;">I could recover my data if my laptop was stolen or lost</span>
+      </div>
+
+      <div class="gm-item" onclick="gmToggle(this)" style="display:flex; align-items:flex-start; gap:12px; padding:1rem 1.2rem; background:#112240; border:1px solid rgba(0,201,167,0.18); border-radius:10px; cursor:pointer; transition:border-color 0.2s;" role="checkbox" tabindex="0" aria-checked="false">
+        <div class="gm-box" style="width:20px; height:20px; min-width:20px; border:1px solid rgba(0,201,167,0.4); border-radius:4px; background:#0A1628; display:flex; align-items:center; justify-content:center; margin-top:2px;">
+          <span class="gm-tick" style="display:none; color:#00C9A7; font-size:14px; font-weight:700;">✓</span>
+        </div>
+        <span style="font-size:0.9rem; color:#CCD6F6; line-height:1.5;">My family members are protected against phishing and online scams</span>
+      </div>
+
+      <div class="gm-item" onclick="gmToggle(this)" style="display:flex; align-items:flex-start; gap:12px; padding:1rem 1.2rem; background:#112240; border:1px solid rgba(0,201,167,0.18); border-radius:10px; cursor:pointer; transition:border-color 0.2s;" role="checkbox" tabindex="0" aria-checked="false">
+        <div class="gm-box" style="width:20px; height:20px; min-width:20px; border:1px solid rgba(0,201,167,0.4); border-radius:4px; background:#0A1628; display:flex; align-items:center; justify-content:center; margin-top:2px;">
+          <span class="gm-tick" style="display:none; color:#00C9A7; font-size:14px; font-weight:700;">✓</span>
+        </div>
+        <span style="font-size:0.9rem; color:#CCD6F6; line-height:1.5;">I know which devices in my home are exposed to the internet</span>
+      </div>
+
+      <div class="gm-item" onclick="gmToggle(this)" style="display:flex; align-items:flex-start; gap:12px; padding:1rem 1.2rem; background:#112240; border:1px solid rgba(0,201,167,0.18); border-radius:10px; cursor:pointer; transition:border-color 0.2s;" role="checkbox" tabindex="0" aria-checked="false">
+        <div class="gm-box" style="width:20px; height:20px; min-width:20px; border:1px solid rgba(0,201,167,0.4); border-radius:4px; background:#0A1628; display:flex; align-items:center; justify-content:center; margin-top:2px;">
+          <span class="gm-tick" style="display:none; color:#00C9A7; font-size:14px; font-weight:700;">✓</span>
+        </div>
+        <span style="font-size:0.9rem; color:#CCD6F6; line-height:1.5;">My smart home devices operate locally — not dependent on third-party cloud servers</span>
+      </div>
+
+    </div>
+
+    <!-- Alert box -->
+    <div id="gm-alert" style="padding:1.2rem 1.5rem; border-radius:12px; border:1px solid rgba(239,159,39,0.4); background:rgba(239,159,39,0.08); margin-bottom:2.5rem; display:flex; gap:12px; align-items:flex-start;">
+      <span style="font-size:1.4rem; margin-top:2px;">⚠️</span>
+      <p id="gm-alert-txt" style="font-size:0.9rem; color:#EF9F27; margin:0; line-height:1.7;">If you answered "No" or "I'm not sure" to any of these questions, your home network and personal data may be exposed to unnecessary risks. GuardMesh can help you fix every one of these gaps.</p>
+    </div>
+
+    <!-- Solutions -->
+    <h3 style="font-family:'Space Grotesk',sans-serif; font-size:1.4rem; color:#E6F1FF; margin-bottom:1.5rem;">How we fix each risk</h3>
+    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:1rem; margin-bottom:2rem;">
+
+      <div style="background:#112240; border:1px solid rgba(0,201,167,0.18); border-radius:12px; padding:1.4rem; transition:border-color 0.2s;">
+        <div style="font-size:1.8rem; margin-bottom:0.8rem;">💻</div>
+        <h4 style="font-family:'Space Grotesk',sans-serif; font-size:0.95rem; color:#CCD6F6; margin:0 0 0.6rem;">Laptop &amp; account protection</h4>
+        <ul style="margin:0; padding-left:1.1rem;">
+          <li style="font-size:0.85rem; color:#8892B0; line-height:1.9;">Multi-Factor Authentication</li>
+          <li style="font-size:0.85rem; color:#8892B0; line-height:1.9;">Device hardening</li>
+          <li style="font-size:0.85rem; color:#8892B0; line-height:1.9;">Password manager setup</li>
+        </ul>
+      </div>
+
+      <div style="background:#112240; border:1px solid rgba(0,201,167,0.18); border-radius:12px; padding:1.4rem; transition:border-color 0.2s;">
+        <div style="font-size:1.8rem; margin-bottom:0.8rem;">🌐</div>
+        <h4 style="font-family:'Space Grotesk',sans-serif; font-size:0.95rem; color:#CCD6F6; margin:0 0 0.6rem;">Router &amp; Wi-Fi security</h4>
+        <ul style="margin:0; padding-left:1.1rem;">
+          <li style="font-size:0.85rem; color:#8892B0; line-height:1.9;">Router hardening</li>
+          <li style="font-size:0.85rem; color:#8892B0; line-height:1.9;">Wi-Fi security optimization</li>
+          <li style="font-size:0.85rem; color:#8892B0; line-height:1.9;">Firmware updates</li>
+          <li style="font-size:0.85rem; color:#8892B0; line-height:1.9;">Guest network setup</li>
+        </ul>
+      </div>
+
+      <div style="background:#112240; border:1px solid rgba(0,201,167,0.18); border-radius:12px; padding:1.4rem; transition:border-color 0.2s;">
+        <div style="font-size:1.8rem; margin-bottom:0.8rem;">📷</div>
+        <h4 style="font-family:'Space Grotesk',sans-serif; font-size:0.95rem; color:#CCD6F6; margin:0 0 0.6rem;">Connected Device Protection</h4>
+        <ul style="margin:0; padding-left:1.1rem;">
+          <li style="font-size:0.85rem; color:#8892B0; line-height:1.9;">Security assessment</li>
+          <li style="font-size:0.85rem; color:#8892B0; line-height:1.9;">Secure remote access via VPN</li>
+          <li style="font-size:0.85rem; color:#8892B0; line-height:1.9;">Password hardening</li>
+          <li style="font-size:0.85rem; color:#8892B0; line-height:1.9;">Network segmentation</li>
+        </ul>
+      </div>
+
+      <div style="background:#112240; border:1px solid rgba(0,201,167,0.18); border-radius:12px; padding:1.4rem; transition:border-color 0.2s;">
+        <div style="font-size:1.8rem; margin-bottom:0.8rem;">🏠</div>
+        <h4 style="font-family:'Space Grotesk',sans-serif; font-size:0.95rem; color:#CCD6F6; margin:0 0 0.6rem;">Smart home isolation</h4>
+        <ul style="margin:0; padding-left:1.1rem;">
+          <li style="font-size:0.85rem; color:#8892B0; line-height:1.9;">IoT network segmentation</li>
+          <li style="font-size:0.85rem; color:#8892B0; line-height:1.9;">Device access control</li>
+          <li style="font-size:0.85rem; color:#8892B0; line-height:1.9;">Local control setup</li>
+        </ul>
+      </div>
+
+      <div style="background:#112240; border:1px solid rgba(0,201,167,0.18); border-radius:12px; padding:1.4rem; transition:border-color 0.2s;">
+        <div style="font-size:1.8rem; margin-bottom:0.8rem;">☁️</div>
+        <h4 style="font-family:'Space Grotesk',sans-serif; font-size:0.95rem; color:#CCD6F6; margin:0 0 0.6rem;">Local vs cloud control</h4>
+        <ul style="margin:0; padding-left:1.1rem;">
+          <li style="font-size:0.85rem; color:#8892B0; line-height:1.9;">Cloud dependency audit</li>
+          <li style="font-size:0.85rem; color:#8892B0; line-height:1.9;">Local control migration</li>
+          <li style="font-size:0.85rem; color:#8892B0; line-height:1.9;">Private VPN remote access</li>
+          <li style="font-size:0.85rem; color:#8892B0; line-height:1.9;">No vendor lock-in</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- CTA -->
+    <div style="padding:1.5rem 2rem; background:rgba(0,201,167,0.06); border:1px solid rgba(0,201,167,0.25); border-radius:12px; display:flex; align-items:center; justify-content:space-between; gap:1rem; flex-wrap:wrap;">
+      <p style="font-family:'Space Grotesk',sans-serif; font-size:1rem; color:#CCD6F6; margin:0; font-weight:500;">Not sure where to start? Book a free consultation — no commitment required.</p>
+      <a href="#contact" style="display:inline-block; background:#00C9A7; color:#0A1628; font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:0.9rem; padding:0.75rem 1.5rem; border-radius:8px; text-decoration:none; white-space:nowrap;">Get a free consultation →</a>
+    </div>
+
+  </div>
+</section>
+
+</section><section id="it-consulting" class="service-panel" data-service-panel=""><div class="container"><span class="section-tag">IT Consulting</span><h2 class="section-title">IT infrastructure that supports your business.</h2><div class="section-divider"></div><p class="section-sub it-consulting-intro">12+ years of hands-on experience in IT infrastructure and systems, supporting reliable, secure business operations. Practical support for servers, Microsoft 365, virtualization, backups, devices and multi-site networks.</p><div class="it-consulting-grid"><div class="service-card"><span class="service-icon" aria-hidden="true">🖥️</span><h3>Servers &amp; Virtualization</h3><p>Administration and troubleshooting for Windows Server, Active Directory, VMware, Linux and Citrix environments.</p></div><div class="service-card"><span class="service-icon" aria-hidden="true">☁️</span><h3>Microsoft 365 &amp; SharePoint</h3><p>User and access administration, SharePoint Online support and day-to-day Microsoft 365 assistance.</p></div><div class="service-card"><span class="service-icon" aria-hidden="true">💾</span><h3>Backup Operations</h3><p>Operational support for Veeam backups, including administration and troubleshooting.</p></div><div class="service-card"><span class="service-icon" aria-hidden="true">🌐</span><h3>Networks &amp; Multi-site Support</h3><p>Support for wired and wireless networks, infrastructure troubleshooting and IT operations across multiple sites.</p></div><div class="service-card"><span class="service-icon" aria-hidden="true">👥</span><h3>Devices &amp; User Support</h3><p>Device deployment and support for Windows, macOS and Linux, plus user account setup and offboarding.</p></div><div class="service-card"><span class="service-icon" aria-hidden="true">📞</span><h3>Business Platforms &amp; Communications</h3><p>Support for Jira Server and Cloud, Yealink VoIP and Polycom/Cisco video conferencing systems.</p></div></div><div class="it-consulting-cta service-panel-actions"><a href="#contact" class="btn-primary">Discuss your IT needs</a><a href="#services" class="service-back-link">← All services</a></div></div></section></div><!-- WHY -->
+<section id="why">
+  <div class="container">
+    <span class="section-tag">Why choose us</span>
+    <h2 class="section-title">Why GuardMesh?</h2>
+    <div class="section-divider"></div>
+    <div class="why-grid">
+      <div class="why-item">
+        <span class="why-icon">🏠</span>
+        <h3>Local-first approach</h3>
+        <p>Your data stays in your home. We build systems that work without cloud dependency — faster, more private, always on.</p>
+      </div>
+      <div class="why-item">
+        <span class="why-icon">🔐</span>
+        <h3>Security by default</h3>
+        <p>Every installation is secured from day one. Network segmentation, strong authentication, encrypted remote access.</p>
+      </div>
+      <div class="why-item">
+        <span class="why-icon">📞</span>
+        <h3>Real support</h3>
+        <p>You get a real person who knows your setup. Remote assistance available — we don't disappear after installation.</p>
+      </div>
+      <div class="why-item">
+        <span class="why-icon">💶</span>
+        <h3>No mandatory smart home subscriptions</h3>
+        <p>We build systems you own completely. No monthly fees to keep your own home running.</p>
+      </div>
+      <div class="why-item">
+        <span class="why-icon">📍</span>
+        <h3>Local to Belgium</h3>
+        <p>Based in Sint-Pieters-Leeuw. We know the Belgian market, the regulations, and we can visit when needed.</p>
+      </div>
+      <div class="why-item">
+        <span class="why-icon">⚡</span>
+        <h3>Fast &amp; reliable</h3>
+        <p>Local control means instant response. Your lights, security, and automations react in milliseconds — not seconds.</p>
+      </div>
+    </div>
+   <div class="why-item cert-highlight">
+        <span class="why-icon">🏅</span>
+        <h3>CCNA Certified</h3>
+        <p>Cisco Certified Network Associate — internationally recognised networking certification. Your network is configured by a verified professional, not a hobbyist.</p>
+      </div>
+      <div class="why-item cert-highlight">
+        <span class="why-icon">🔒</span>
+        <h3>Certified DPO</h3>
+        <p>Certified Data Protection Officer — GDPR compliant by design. Every installation respects your privacy and meets EU data protection regulations.</p>
+      </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+ 
+<section id="media">
+  <div class="container">
+    <span class="section-tag">Portfolio</span>
+    <h2 class="section-title">Our Projects</h2>
+    <div class="section-divider"></div>
+    <p class="section-sub">Real installations, real results, smart home automation and cybersecurity across Belgium and beyond.</p>
+    <div class="media-grid">
+
+<script>
+function createGallery(prefix, images) {
+    let currentIndex = 0;
+
+    function show(index) {
+        currentIndex = index;
+
+        document.getElementById(prefix + '-main-img').src =
+            images[currentIndex];
+
+        document.getElementById(prefix + '-counter').textContent =
+            (currentIndex + 1) + ' / ' + images.length;
+
+        const thumbs = document.querySelectorAll(
+            '#' + prefix + '-gallery .gallery-thumbnails img'
+        );
+
+        thumbs.forEach(function(thumb, i) {
+            thumb.style.borderColor =
+                i === currentIndex ? '#00C9A7' : 'transparent';
+
+            thumb.style.opacity =
+                i === currentIndex ? '1' : '0.6';
+        });
+    }
+
+    return {
+        show: show,
+        next: function() {
+            show((currentIndex + 1) % images.length);
+        },
+        prev: function() {
+            show((currentIndex - 1 + images.length) % images.length);
+        }
+    };
+}
+
+const networkGallery = createGallery('network', [
+    "prj1-Lot_4.jpg",
+    "Prj2-Bru_2.jpeg"
+]);
+
+const homeGallery = createGallery('home', [
+    "HA-integration_2.jpeg",
+    "HA dashboard.jpeg.png"
+]);
+
+function networkShow(n) { networkGallery.show(n); }
+function networkNext() { networkGallery.next(); }
+function networkPrev() { networkGallery.prev(); }
+
+function homeShow(n) { homeGallery.show(n); }
+function homeNext() { homeGallery.next(); }
+function homePrev() { homeGallery.prev(); }
+</script>
+
+
+
+<!-- Card 2: Network Security Gallery -->
+<div class="media-card" id="network-gallery">
+  <div style="position:relative;">
+    <img id="network-main-img" src="prj1-Lot_4.jpg" alt="Network Security Setup" style="width:100%; height:220px; object-fit:cover; display:block;">
+
+    <button onclick="networkPrev()" class="gallery-prev" type="button" aria-label="Previous photo">‹</button>
+    <button onclick="networkNext()" class="gallery-next" type="button" aria-label="Next photo">›</button>
+
+    <span id="network-counter" class="gallery-counter">1 / 2</span>
+  </div>
+
+  <div class="gallery-thumbnails">
+    <img src="prj1-Lot_4.jpg" onclick="networkShow(0)" alt="Network project photo 1">
+
+    <img src="Prj2-Bru_2.jpeg" onclick="networkShow(1)" alt="Network project photo 2">
+  </div>
+
+  <div class="media-info">
+    <h4>🔒 Network Security Setup</h4>
+    <p>Full network segmentation — IoT devices isolated from personal devices for maximum security.</p>
+  </div>
+</div>
+
+
+<!-- Card 3: Home Assistant Gallery -->
+<div class="media-card" id="home-gallery">
+  <div style="position:relative;">
+    <img id="home-main-img" src="HA-integration_2.jpeg" alt="Home Assistant Integration" style="width:100%; height:220px; object-fit:cover; display:block;">
+
+    <button onclick="homePrev()" class="gallery-prev" type="button" aria-label="Previous photo">‹</button>
+    <button onclick="homeNext()" class="gallery-next" type="button" aria-label="Next photo">›</button>
+
+    <span id="home-counter" class="gallery-counter">1 / 2</span>
+  </div>
+
+  <div class="gallery-thumbnails">
+    <img src="HA-integration_2.jpeg" onclick="homeShow(0)" alt="Home Assistant Integration">
+
+    <img src="HA%20dashboard.jpeg.png" onclick="homeShow(1)" alt="Home Assistant Dashboard">
+  </div>
+
+  <div class="media-info">
+    <h4>🏠 Home Assistant Integration</h4>
+    <p>Cameras fully integrated with Home Assistant for motion detection, alerts, and local control.</p>
+  </div>
+</div>
+
+<!-- Card 5: Business Presentation -->
+<div class="media-card">
+ 
+<div class="project-video">
+  <video controls playsinline preload="metadata" style="width:100%; height:220px; object-fit:contain; display:block; background:#000;">
+
+    <source src="video.mp4" type="video/mp4">
+
+    Your browser does not support HTML5 video.
+  </source></video>
+</div>
+ 
+
+  <div class="media-info">
+    <h4>GuardMesh — Project Presentation</h4>
+    <p>Overview of our smart home and cybersecurity services for homes and businesses.</p>
+  </div>
+</div>
+
+    </div>
+    <p class="media-note"></p>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div class="contact-grid">
+      <div class="contact-info">
+        <span class="section-tag">Get in touch</span>
+        <h2 class="section-title">Let's talk about your project</h2>
+        <div class="section-divider"></div>
+        <p>Whether you want to automate your home, secure your network, or just need advice — we're here to help. First consultation is always free.</p>
+       
+       <div class="contact-item">
+    <div class="contact-item-icon">📍</div>
+    <div>
+     <span>Sint-Pieters-Leeuw, 1600 Belgium</span></div>
+</div>
+</div>
+          </div>
+        
+<div class="contact-form-box">
+
+    <div class="contact-form-header">
+        <span class="contact-btn-icon">✉️</span>
+
+        <div class="contact-btn-text">
+            <span class="contact-btn-label">Send us a message</span>
+            <span class="contact-btn-sub">We will reply to you as soon as possible</span>
+        </div>
+    </div>
+
+    <form action="https://script.google.com/macros/s/AKfycbxP7i8Y5_CSE5fNVkBB0w475aVx3MQGYE-HJ4PFROpRCyxYNlWgZbMjZ22KBD7BkB_tQQ/exec" method="POST">
+
+        <input type="text" name="name" placeholder="Your name" required aria-label="Your name">
+
+        <input type="email" name="email" placeholder="Your email" required aria-label="Your email">
+
+        <textarea name="message" placeholder="Type your message here..." rows="5" required aria-label="Type your message here..."></textarea>
+
+        <button type="submit">
+            Send message →
+        </button>
+
+    </form>
+
+</div>
+
+
+       
+       
+        <a href="https://anydesk.com/en/downloads" target="_blank" class="contact-btn contact-btn-anydesk">
+          <span class="contact-btn-icon">🖥️</span>
+          <div class="contact-btn-text">
+            <span class="contact-btn-label">Remote support via AnyDesk</span>
+            <span class="contact-btn-sub">Download AnyDesk then contact us</span>
+          </div>
+          <span class="contact-btn-arrow">→</span>
+        </a>
+        <p class="contact-response-note">⚡ We typically respond within 2 hours during business hours</p>
+      </div>
+    
+  
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">GuardMesh.</div>
+    <div class="footer-tagline">Smart Home · Cybersecurity · IT Consulting — Sint-Pieters-Leeuw, Belgium</div>
+   <div class="footer-certs">
+  <span class="footer-cert-badge footer-cert-ccna">🏅 CCNA Certified</span>
+  <span class="footer-cert-badge footer-cert-dpo">🔒 Certified DPO</span>
+  <span class="footer-cert-badge footer-cert-gdpr">⚖️ GDPR Compliant</span>
+</div>
+    <div class="footer-copy">© 2026 GuardMesh. Built with ❤️ in <span>Belgium</span>.</div>
+  </div>
+</footer>
+
+<script>
+  const hamburger = document.getElementById('hamburger');
+  const navLinks = document.getElementById('navLinks');
+  function closeMenu() {
+    const serviceMenu = document.getElementById('gm-services-dropdown');
+    if (serviceMenu) serviceMenu.open = false;
+    navLinks.classList.remove('open');
+    hamburger.setAttribute('aria-expanded', 'false');
+  }
+  hamburger.addEventListener('click', () => {
+    const open = navLinks.classList.toggle('open');
+    hamburger.setAttribute('aria-expanded', String(open));
+  });
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', closeMenu);
+  });
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && navLinks.classList.contains('open')) {
+      closeMenu();
+      hamburger.focus();
+    }
+  });
+  document.querySelectorAll('.gm-item').forEach(item => {
+    item.addEventListener('keydown', event => {
+      if (event.key === ' ' || event.key === 'Enter') {
+        event.preventDefault();
+        gmToggle(item);
+      }
+    });
+  });
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.service-card, .why-item, .stat-box, .media-card').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(20px)';
+    el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+    observer.observe(el);
+  });
+</script>
+<script id="gm-services-runtime">
+  const gmServicesDropdown = document.getElementById('gm-services-dropdown');
+  gmServicesDropdown.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => { gmServicesDropdown.open = false; });
+  });
+  document.addEventListener('pointerdown', event => {
+    if (!gmServicesDropdown.contains(event.target)) gmServicesDropdown.open = false;
+  });
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && gmServicesDropdown.open) {
+      gmServicesDropdown.open = false;
+      gmServicesDropdown.querySelector('summary').focus();
+    }
+  });
+</script><script id="gm-service-routing">
+  const gmServicePanels = Array.from(document.querySelectorAll('[data-service-panel]'));
+  const gmServiceMenuLinks = Array.from(document.querySelectorAll('#gm-services-dropdown a'));
+  const gmServiceRoutes = {
+    'smart-home':'smart-home',
+    'cybersecurity':'cybersecurity',
+    'pricing':'cybersecurity',
+    'business-assessments':'cybersecurity',
+    'security':'cybersecurity',
+    'it-consulting':'it-consulting'
+  };
+  let gmActiveService = null;
+  function gmServiceHashTarget() {
+    try { return decodeURIComponent(window.location.hash.slice(1)); }
+    catch (error) { return ''; }
+  }
+  function gmApplyServiceRoute(scrollToTarget) {
+    const targetId = gmServiceHashTarget();
+    if (Object.prototype.hasOwnProperty.call(gmServiceRoutes,targetId)) {
+      gmActiveService = gmServiceRoutes[targetId];
+    } else if (!targetId || targetId === 'services') {
+      gmActiveService = null;
+    }
+    gmServicePanels.forEach(panel => { panel.hidden = panel.id !== gmActiveService; });
+    gmServiceMenuLinks.forEach(link => {
+      if (link.getAttribute('href') === '#' + gmActiveService) link.setAttribute('aria-current','location');
+      else link.removeAttribute('aria-current');
+    });
+    const target = document.getElementById(targetId);
+    if (scrollToTarget && target) {
+      requestAnimationFrame(() => { target.scrollIntoView({block:'start'}); });
+    }
+  }
+  window.addEventListener('hashchange',() => gmApplyServiceRoute(true));
+  gmApplyServiceRoute(Boolean(window.location.hash));
+</script><script id="gm-language-data" type="application/json">{"strings":{"GuardMesh — Smart Home \u0026 Cybersecurity Belgium":{"en":"GuardMesh — Smart Home \u0026 Cybersecurity Belgium","fr":"GuardMesh — Domotique et cybersécurité en Belgique","nl":"GuardMesh — Domotica en cyberbeveiliging in België"},"About":{"en":"About","fr":"À propos","nl":"Over ons"},"Services":{"en":"Services","fr":"Services","nl":"Diensten"},"Pricing":{"en":"Pricing","fr":"Tarifs","nl":"Tarieven"},"Security Check":{"en":"Security Check","fr":"Test de sécurité","nl":"Veiligheidscheck"},"Why GuardMesh":{"en":"Why GuardMesh","fr":"Pourquoi GuardMesh","nl":"Waarom GuardMesh"},"Portfolio":{"en":"Portfolio","fr":"Réalisations","nl":"Projecten"},"Contact us":{"en":"Contact us","fr":"Contactez-nous","nl":"Contacteer ons"},"Smart Home · Cybersecurity · Belgium":{"en":"Smart Home · Cybersecurity · Belgium","fr":"Domotique · Cybersécurité · Belgique","nl":"Domotica · Cyberbeveiliging · België"},"Your Home should be":{"en":"Your Home should be","fr":"Votre maison :","nl":"Uw woning:"},"Smart, Private,":{"en":"Smart, Private,","fr":"intelligente, privée","nl":"slim, privé"},"\u0026 Secure.":{"en":"\u0026 Secure.","fr":"et sécurisée.","nl":"en veilig."},"We make it happen — local control, privacy-focused smart home systems, and practical network security from day one.":{"en":"We make it happen — local control, privacy-focused smart home systems, and practical network security from day one.","fr":"Nous concrétisons cette vision : un contrôle local, des systèmes domotiques respectueux de votre vie privée et une sécurité réseau concrète dès le premier jour.","nl":"Wij maken het waar: lokale bediening, domotica met aandacht voor uw privacy en praktische netwerkbeveiliging vanaf dag één."},"📍 Sint-Pieters-Leeuw,":{"en":"📍 Sint-Pieters-Leeuw,","fr":"📍 Sint-Pieters-Leeuw,","nl":"📍 Sint-Pieters-Leeuw,"},"1600 Belgium":{"en":"1600 Belgium","fr":"1600 Belgique","nl":"1600 België"},"— serving the wider Brussels region":{"en":"— serving the wider Brussels region","fr":"— au service de Bruxelles et de sa périphérie","nl":"— actief in Brussel en de ruime omgeving"},"Get a free consultation":{"en":"Get a free consultation","fr":"Demander un entretien gratuit","nl":"Vraag een gratis kennismakingsgesprek aan"},"Our services":{"en":"Our services","fr":"Nos services","nl":"Onze diensten"},"Live home dashboard — GuardMesh setup":{"en":"Live home dashboard — GuardMesh setup","fr":"Tableau de bord en direct — installation GuardMesh","nl":"Live dashboard voor uw woning — GuardMesh-installatie"},"kW":{"en":"kW","fr":"kW","nl":"kW"},"Energy now":{"en":"Energy now","fr":"Puissance actuelle","nl":"Huidig vermogen"},"Monthly cost":{"en":"Monthly cost","fr":"Coût mensuel","nl":"Maandelijkse kosten"},"🔌 Device Plug/Relay":{"en":"🔌 Device Plug/Relay","fr":"🔌 Prise / relais","nl":"🔌 Stekker / relais"},"ON":{"en":"ON","fr":"ACTIF","nl":"AAN"},"💡 Smart lights":{"en":"💡 Smart lights","fr":"💡 Éclairage intelligent","nl":"💡 Slimme verlichting"},"AUTO":{"en":"AUTO","fr":"AUTO","nl":"AUTO"},"📷 Reolink camera":{"en":"📷 Reolink camera","fr":"📷 Caméra Reolink","nl":"📷 Reolink-camera"},"SECURE":{"en":"SECURE","fr":"SÉCURISÉE","nl":"BEVEILIGD"},"🔒 Network":{"en":"🔒 Network","fr":"🔒 Réseau","nl":"🔒 Netwerk"},"PROTECTED":{"en":"PROTECTED","fr":"PROTÉGÉ","nl":"BESCHERMD"},"Scroll":{"en":"Scroll","fr":"Défiler","nl":"Scroll"},"CEO":{"en":"CEO","fr":"CEO","nl":"CEO"},"Eng. Hadi Azzam":{"en":"Eng. Hadi Azzam","fr":"Eng. Hadi Azzam","nl":"Eng. Hadi Azzam"},"Smart Home \u0026 Cybersecurity Expert":{"en":"Smart Home \u0026 Cybersecurity Expert","fr":"Expert en domotique et cybersécurité","nl":"Expert in domotica en cyberbeveiliging"},"🏅 CCNA Certified":{"en":"🏅 CCNA Certified","fr":"🏅 Certifié CCNA","nl":"🏅 CCNA-gecertificeerd"},"🔒 Certified DPO":{"en":"🔒 Certified DPO","fr":"🔒 DPO certifié","nl":"🔒 Gecertificeerd DPO"},"About GuardMesh":{"en":"About GuardMesh","fr":"À propos de GuardMesh","nl":"Over GuardMesh"},"Local expertise.":{"en":"Local expertise.","fr":"Une expertise locale.","nl":"Lokale expertise."},"Real results.":{"en":"Real results.","fr":"Des résultats concrets.","nl":"Concrete resultaten."},"GuardMesh is a Belgium-based technology consultancy specialising in smart home automation and cybersecurity. We help homeowners and businesses take full control of their technology — securely, privately, and without relying on cloud subscriptions.":{"en":"GuardMesh is a Belgium-based technology consultancy specialising in smart home automation and cybersecurity. We help homeowners and businesses take full control of their technology — securely, privately, and without relying on cloud subscriptions.","fr":"GuardMesh est un bureau de conseil technologique belge spécialisé en domotique et en cybersécurité. Nous aidons les particuliers et les entreprises à maîtriser pleinement leur technologie, en toute sécurité, dans le respect de leur vie privée et sans dépendre d’abonnements au cloud.","nl":"GuardMesh is een Belgisch IT-adviesbureau gespecialiseerd in domotica en cyberbeveiliging. Wij helpen particulieren en bedrijven om hun technologie volledig zelf te beheren: veilig, met respect voor hun privacy en zonder afhankelijk te zijn van cloudabonnementen."},"Based in Sint-Pieters-Leeuw, we serve clients across the Brussels region and beyond. Every installation is tailored to your needs — from a single smart switch to a fully automated, secured home ecosystem.":{"en":"Based in Sint-Pieters-Leeuw, we serve clients across the Brussels region and beyond. Every installation is tailored to your needs — from a single smart switch to a fully automated, secured home ecosystem.","fr":"Basés à Sint-Pieters-Leeuw, nous accompagnons nos clients à Bruxelles, dans sa périphérie et au-delà. Chaque installation est adaptée à vos besoins, d’un simple interrupteur connecté à une maison entièrement automatisée et sécurisée.","nl":"Vanuit Sint-Pieters-Leeuw helpen wij klanten in Brussel, de ruime omgeving en daarbuiten. Elke installatie wordt afgestemd op uw behoeften: van één slimme schakelaar tot een volledig geautomatiseerde en beveiligde woning."},"We believe your home should work for you, not for a tech company's servers. That's why we build local-first systems that keep your data at home and your network locked down.":{"en":"We believe your home should work for you, not for a tech company's servers. That's why we build local-first systems that keep your data at home and your network locked down.","fr":"Nous pensons que votre maison doit être à votre service, et non dépendre des serveurs d’une entreprise technologique. C’est pourquoi nous privilégions des systèmes locaux qui conservent vos données chez vous et protègent votre réseau.","nl":"Uw woning moet voor u werken, niet voor de servers van een technologiebedrijf. Daarom bouwen wij systemen die in de eerste plaats lokaal werken, uw gegevens thuis houden en uw netwerk beschermen."},"Local control — no forced cloud":{"en":"Local control — no forced cloud","fr":"Contrôle local — sans cloud imposé","nl":"Lokale bediening — geen verplichte cloud"},"Remote support available":{"en":"Remote support available","fr":"Assistance à distance disponible","nl":"Ondersteuning op afstand beschikbaar"},"Years of hands-on experience":{"en":"Years of hands-on experience","fr":"Années d’expérience pratique","nl":"Jaar praktijkervaring"},"Sint-Pieters-Leeuw, Belgium":{"en":"Sint-Pieters-Leeuw, Belgium","fr":"Sint-Pieters-Leeuw, Belgique","nl":"Sint-Pieters-Leeuw, België"},"Clear pricing":{"en":"Clear pricing","fr":"Des tarifs clairs","nl":"Duidelijke tarieven"},"Home cybersecurity \u0026 pricing":{"en":"Home cybersecurity \u0026 pricing","fr":"Cybersécurité à domicile et tarifs","nl":"Cyberbeveiliging thuis en tarieven"},"Start with a one-time home network assessment, or choose an annual plan for additional guidance and support.":{"en":"Start with a one-time home network assessment, or choose an annual plan for additional guidance and support.","fr":"Commencez par une évaluation ponctuelle de votre réseau domestique ou choisissez une formule annuelle pour bénéficier de conseils et d’une assistance supplémentaires.","nl":"Start met een eenmalige beoordeling van uw thuisnetwerk of kies een jaarformule voor extra advies en ondersteuning."},"One-time service · No subscription":{"en":"One-time service · No subscription","fr":"Prestation ponctuelle · Sans abonnement","nl":"Eenmalige dienst · Zonder abonnement"},"Home Network Security Assessment":{"en":"Home Network Security Assessment","fr":"Évaluation de la sécurité du réseau domestique","nl":"Beoordeling van de beveiliging van uw thuisnetwerk"},"We visit your home with our KBE Cybersecurity Assessment Box to discover visible network devices, review detectable services and potential security risks, and provide a network overview and PDF report with practical recommendations.":{"en":"We visit your home with our KBE Cybersecurity Assessment Box to discover visible network devices, review detectable services and potential security risks, and provide a network overview and PDF report with practical recommendations.","fr":"Nous nous rendons chez vous avec notre boîtier d’évaluation de cybersécurité KBE pour identifier les appareils visibles sur le réseau, examiner les services détectables et les risques de sécurité potentiels, puis vous remettre une vue d’ensemble du réseau et un rapport PDF accompagné de recommandations pratiques.","nl":"Wij komen bij u thuis met onze KBE Cybersecurity Assessment Box om zichtbare netwerkapparaten te inventariseren, detecteerbare diensten en mogelijke beveiligingsrisico’s te onderzoeken en u een netwerkoverzicht en een pdf-rapport met praktische aanbevelingen te bezorgen."},"/ one time":{"en":"/ one time","fr":"/ une fois","nl":"/ eenmalig"},"Book an assessment":{"en":"Book an assessment","fr":"Réserver une évaluation","nl":"Boek een beoordeling"},"Annual protection plans":{"en":"Annual protection plans","fr":"Formules annuelles de protection","nl":"Jaarformules voor bescherming"},"Each annual plan includes an initial on-site home network security assessment, plus the services listed below.":{"en":"Each annual plan includes an initial on-site home network security assessment, plus the services listed below.","fr":"Chaque formule annuelle comprend une première évaluation sur place de la sécurité du réseau domestique, ainsi que les services repris ci-dessous.","nl":"Elke jaarformule omvat een eerste beoordeling van de beveiliging van uw thuisnetwerk ter plaatse, plus de hieronder vermelde diensten."},"Core protection":{"en":"Core protection","fr":"Protection de base","nl":"Basisbescherming"},"Essential":{"en":"Essential","fr":"Essential","nl":"Essential"},"/ year":{"en":"/ year","fr":"/ an","nl":"/ jaar"},"A professional cybersecurity baseline and ongoing awareness.":{"en":"A professional cybersecurity baseline and ongoing awareness.","fr":"Un état des lieux professionnel de votre cybersécurité et une sensibilisation continue.","nl":"Een professionele basisbeoordeling van uw cyberbeveiliging en doorlopende bewustmaking."},"On-site home network security assessment":{"en":"On-site home network security assessment","fr":"Évaluation sur place de la sécurité du réseau domestique","nl":"Beoordeling van de beveiliging van uw thuisnetwerk ter plaatse"},"Wi-Fi \u0026 device security review":{"en":"Wi-Fi \u0026 device security review","fr":"Vérification de la sécurité du Wi-Fi et des appareils","nl":"Controle van de wifi- en apparaatbeveiliging"},"Practical security advice":{"en":"Practical security advice","fr":"Conseils pratiques en sécurité","nl":"Praktisch beveiligingsadvies"},"Firmware security update guidance":{"en":"Firmware security update guidance","fr":"Conseils sur les mises à jour de sécurité des micrologiciels","nl":"Advies over beveiligingsupdates voor firmware"},"Monthly awareness emails":{"en":"Monthly awareness emails","fr":"E-mails mensuels de sensibilisation","nl":"Maandelijkse e-mails met beveiligingstips"},"Ask about Essential":{"en":"Ask about Essential","fr":"Se renseigner sur Essential","nl":"Meer info over Essential"},"Enhanced protection · Popular choice":{"en":"Enhanced protection · Popular choice","fr":"Protection renforcée · Formule populaire","nl":"Uitgebreide bescherming · Populaire keuze"},"Standard":{"en":"Standard","fr":"Standard","nl":"Standard"},"Extra help protecting accounts, devices and personal data.":{"en":"Extra help protecting accounts, devices and personal data.","fr":"Une aide supplémentaire pour protéger vos comptes, vos appareils et vos données personnelles.","nl":"Extra hulp om uw accounts, apparaten en persoonsgegevens te beschermen."},"Everything in Essential":{"en":"Everything in Essential","fr":"Tous les services de la formule Essential","nl":"Alles uit Essential"},"Account security \u0026 malware checks":{"en":"Account security \u0026 malware checks","fr":"Vérification de la sécurité des comptes et recherche de logiciels malveillants","nl":"Controle van accountbeveiliging en op malware"},"Password, login \u0026 backup security guidance":{"en":"Password, login \u0026 backup security guidance","fr":"Conseils pour sécuriser les mots de passe, les connexions et les sauvegardes","nl":"Advies over veilige wachtwoorden, aanmeldingen en back-ups"},"Annual cybersecurity support call (1/year)":{"en":"Annual cybersecurity support call (1/year)","fr":"Un entretien annuel d’assistance en cybersécurité (1/an)","nl":"Jaarlijks ondersteuningsgesprek over cyberbeveiliging (1/jaar)"},"Ask about Standard":{"en":"Ask about Standard","fr":"Se renseigner sur Standard","nl":"Meer info over Standard"},"Comprehensive protection":{"en":"Comprehensive protection","fr":"Protection complète","nl":"Omvattende bescherming"},"Premium":{"en":"Premium","fr":"Premium","nl":"Premium"},"Advanced reviews, priority support and extra visits.":{"en":"Advanced reviews, priority support and extra visits.","fr":"Des vérifications approfondies, une assistance prioritaire et des visites supplémentaires.","nl":"Grondige controles, ondersteuning met voorrang en extra bezoeken."},"Everything in Standard":{"en":"Everything in Standard","fr":"Tous les services de la formule Standard","nl":"Alles uit Standard"},"Advanced network \u0026 smart device security review":{"en":"Advanced network \u0026 smart device security review","fr":"Vérification approfondie de la sécurité du réseau et des appareils connectés","nl":"Grondige controle van de beveiliging van het netwerk en slimme apparaten"},"Priority cybersecurity support (2 calls/year)":{"en":"Priority cybersecurity support (2 calls/year)","fr":"Assistance prioritaire en cybersécurité (2 entretiens/an)","nl":"Ondersteuning met voorrang bij cyberbeveiliging (2 gesprekken/jaar)"},"Additional on-site security visits (2/year)":{"en":"Additional on-site security visits (2/year)","fr":"Visites de sécurité supplémentaires sur place (2/an)","nl":"Extra beveiligingsbezoeken ter plaatse (2/jaar)"},"Ask about Premium":{"en":"Ask about Premium","fr":"Se renseigner sur Premium","nl":"Meer info over Premium"},"The €149 assessment is a one-time service; annual plans include additional guidance and support. Assessments identify observable devices, services and potential risks, but cannot guarantee that every vulnerability will be found. Visits are subject to service-area and scope confirmation.":{"en":"The €149 assessment is a one-time service; annual plans include additional guidance and support. Assessments identify observable devices, services and potential risks, but cannot guarantee that every vulnerability will be found. Visits are subject to service-area and scope confirmation.","fr":"L’évaluation à 149 € est une prestation ponctuelle ; les formules annuelles comprennent des conseils et une assistance supplémentaires. Les évaluations identifient les appareils et services observables ainsi que les risques potentiels, sans garantir la détection de toutes les vulnérabilités. Les visites sont soumises à la confirmation de la zone d’intervention et du périmètre de la prestation.","nl":"De beoordeling van €149 is een eenmalige dienst; de jaarformules omvatten extra advies en ondersteuning. Beoordelingen brengen waarneembare apparaten, diensten en mogelijke risico’s in kaart, maar garanderen niet dat elke kwetsbaarheid wordt gevonden. Bezoeken zijn onder voorbehoud van bevestiging van de regio en de omvang van de opdracht."},"Security assessment":{"en":"Security assessment","fr":"Évaluation de sécurité","nl":"Beveiligingsbeoordeling"},"Is your home really secure?":{"en":"Is your home really secure?","fr":"Votre maison est-elle vraiment sécurisée ?","nl":"Is uw woning echt veilig?"},"Tick every item that applies to your home and see your security score instantly.":{"en":"Tick every item that applies to your home and see your security score instantly.","fr":"Cochez chaque affirmation qui correspond à votre situation et consultez immédiatement votre score de sécurité.","nl":"Vink elke uitspraak aan die voor uw woning geldt en bekijk meteen uw beveiligingsscore."},"Your security score":{"en":"Your security score","fr":"Votre score de sécurité","nl":"Uw beveiligingsscore"},"0 / 9 secured":{"en":"0 / 9 secured","fr":"0 / 9 points sécurisés","nl":"0 / 9 beveiligd"},"My router is properly secured with a strong unique password":{"en":"My router is properly secured with a strong unique password","fr":"Mon routeur est correctement sécurisé avec un mot de passe fort et unique","nl":"Mijn router is goed beveiligd met een sterk, uniek wachtwoord"},"Multi-Factor Authentication (MFA) is enabled on all my important accounts":{"en":"Multi-Factor Authentication (MFA) is enabled on all my important accounts","fr":"L’authentification multifacteur (MFA) est activée sur tous mes comptes importants","nl":"Multifactorauthenticatie (MFA) is ingeschakeld voor al mijn belangrijke accounts"},"My connected devices(cameras,doorbells,smart TVs) are isolated \u0026 protected from unauthorized access":{"en":"My connected devices(cameras,doorbells,smart TVs) are isolated \u0026 protected from unauthorized access","fr":"Mes appareils connectés (caméras, sonnettes, téléviseurs) sont isolés et protégés contre les accès non autorisés","nl":"Mijn verbonden apparaten (camera’s, deurbellen, smart-tv’s) zijn afgeschermd en beschermd tegen ongeoorloofde toegang"},"I have secure remote access to my home devices via VPN":{"en":"I have secure remote access to my home devices via VPN","fr":"Je dispose d’un accès à distance sécurisé à mes appareils domestiques via un VPN","nl":"Ik heb via een VPN veilige toegang op afstand tot mijn apparaten thuis"},"My smart devices are isolated from my personal computers and phones":{"en":"My smart devices are isolated from my personal computers and phones","fr":"Mes appareils connectés sont isolés de mes ordinateurs et téléphones personnels","nl":"Mijn slimme apparaten zijn gescheiden van mijn persoonlijke computers en telefoons"},"I could recover my data if my laptop was stolen or lost":{"en":"I could recover my data if my laptop was stolen or lost","fr":"Je pourrais récupérer mes données en cas de vol ou de perte de mon ordinateur portable","nl":"Ik kan mijn gegevens herstellen als mijn laptop wordt gestolen of verloren raakt"},"My family members are protected against phishing and online scams":{"en":"My family members are protected against phishing and online scams","fr":"Les membres de ma famille sont protégés contre le phishing et les escroqueries en ligne","nl":"Mijn gezinsleden zijn beschermd tegen phishing en online oplichting"},"I know which devices in my home are exposed to the internet":{"en":"I know which devices in my home are exposed to the internet","fr":"Je sais quels appareils de ma maison sont accessibles depuis Internet","nl":"Ik weet welke apparaten in mijn woning vanaf het internet bereikbaar zijn"},"My smart home devices operate locally — not dependent on third-party cloud servers":{"en":"My smart home devices operate locally — not dependent on third-party cloud servers","fr":"Mes appareils domotiques fonctionnent localement, sans dépendre de serveurs cloud tiers","nl":"Mijn slimme apparaten werken lokaal, zonder afhankelijk te zijn van cloudservers van derden"},"If you answered \"No\" or \"I'm not sure\" to any of these questions, your home network and personal data may be exposed to unnecessary risks. GuardMesh can help you fix every one of these gaps.":{"en":"If you answered \"No\" or \"I'm not sure\" to any of these questions, your home network and personal data may be exposed to unnecessary risks. GuardMesh can help you fix every one of these gaps.","fr":"Si vous avez répondu « Non » ou « Je ne sais pas » à l’une de ces questions, votre réseau domestique et vos données personnelles peuvent être exposés à des risques évitables. GuardMesh peut vous aider à corriger chacune de ces lacunes.","nl":"Als u op een van deze vragen ‘Nee’ of ‘Ik weet het niet’ hebt geantwoord, kunnen uw thuisnetwerk en persoonsgegevens aan vermijdbare risico’s blootstaan. GuardMesh kan u helpen om elk van deze tekortkomingen aan te pakken."},"How we fix each risk":{"en":"How we fix each risk","fr":"Comment nous traitons chaque risque","nl":"Hoe wij elk risico aanpakken"},"Laptop \u0026 account protection":{"en":"Laptop \u0026 account protection","fr":"Protection des ordinateurs portables et des comptes","nl":"Bescherming van laptops en accounts"},"Multi-Factor Authentication":{"en":"Multi-Factor Authentication","fr":"Authentification multifacteur","nl":"Multifactorauthenticatie"},"Device hardening":{"en":"Device hardening","fr":"Renforcement de la sécurité des appareils","nl":"Apparaten extra beveiligen"},"Password manager setup":{"en":"Password manager setup","fr":"Configuration d’un gestionnaire de mots de passe","nl":"Een wachtwoordbeheerder instellen"},"Router \u0026 Wi-Fi security":{"en":"Router \u0026 Wi-Fi security","fr":"Sécurité du routeur et du Wi-Fi","nl":"Router- en wifibeveiliging"},"Router hardening":{"en":"Router hardening","fr":"Renforcement de la sécurité du routeur","nl":"De router extra beveiligen"},"Wi-Fi security optimization":{"en":"Wi-Fi security optimization","fr":"Optimisation de la sécurité du Wi-Fi","nl":"Wifibeveiliging optimaliseren"},"Firmware updates":{"en":"Firmware updates","fr":"Mises à jour des micrologiciels","nl":"Firmware-updates"},"Guest network setup":{"en":"Guest network setup","fr":"Configuration d’un réseau invité","nl":"Een gastnetwerk instellen"},"Connected Device Protection":{"en":"Connected Device Protection","fr":"Protection des appareils connectés","nl":"Bescherming van verbonden apparaten"},"Secure remote access via VPN":{"en":"Secure remote access via VPN","fr":"Accès à distance sécurisé via VPN","nl":"Veilige toegang op afstand via VPN"},"Password hardening":{"en":"Password hardening","fr":"Renforcement des mots de passe","nl":"Wachtwoorden sterker maken"},"Network segmentation":{"en":"Network segmentation","fr":"Segmentation du réseau","nl":"Netwerksegmentatie"},"Smart home isolation":{"en":"Smart home isolation","fr":"Isolation des appareils domotiques","nl":"Slimme apparaten afschermen"},"IoT network segmentation":{"en":"IoT network segmentation","fr":"Segmentation du réseau IoT","nl":"IoT-netwerksegmentatie"},"Device access control":{"en":"Device access control","fr":"Contrôle d’accès aux appareils","nl":"Toegangscontrole voor apparaten"},"Local control setup":{"en":"Local control setup","fr":"Configuration du contrôle local","nl":"Lokale bediening instellen"},"Local vs cloud control":{"en":"Local vs cloud control","fr":"Contrôle local ou via le cloud","nl":"Lokale bediening of cloudbediening"},"Cloud dependency audit":{"en":"Cloud dependency audit","fr":"Audit de dépendance au cloud","nl":"Afhankelijkheid van de cloud beoordelen"},"Local control migration":{"en":"Local control migration","fr":"Migration vers un contrôle local","nl":"Overstappen op lokale bediening"},"Private VPN remote access":{"en":"Private VPN remote access","fr":"Accès à distance privé via VPN","nl":"Privétoegang op afstand via VPN"},"No vendor lock-in":{"en":"No vendor lock-in","fr":"Sans dépendance à un fournisseur","nl":"Geen afhankelijkheid van één leverancier"},"Not sure where to start? Book a free consultation — no commitment required.":{"en":"Not sure where to start? Book a free consultation — no commitment required.","fr":"Vous ne savez pas par où commencer ? Demandez un entretien gratuit, sans engagement.","nl":"Weet u niet waar te beginnen? Vraag een gratis en vrijblijvend kennismakingsgesprek aan."},"Get a free consultation →":{"en":"Get a free consultation →","fr":"Demander un entretien gratuit →","nl":"Vraag een gratis kennismakingsgesprek aan →"},"What we do":{"en":"What we do","fr":"Ce que nous faisons","nl":"Wat wij doen"},"From first consultation to full installation and ongoing support — we handle everything.":{"en":"From first consultation to full installation and ongoing support — we handle everything.","fr":"Du premier entretien à l’installation complète et à l’assistance continue, nous nous occupons de tout.","nl":"Van het eerste gesprek tot de volledige installatie en doorlopende ondersteuning: wij regelen alles."},"Smart Home Automation":{"en":"Smart Home Automation","fr":"Domotique","nl":"Domotica"},"Full installation and configuration of Home Assistant — the most powerful open-source smart home platform. Control lighting, heating, security, and appliances from one dashboard.":{"en":"Full installation and configuration of Home Assistant — the most powerful open-source smart home platform. Control lighting, heating, security, and appliances from one dashboard.","fr":"Installation et configuration complètes de Home Assistant, la plateforme domotique open source la plus puissante. Contrôlez l’éclairage, le chauffage, la sécurité et les appareils depuis un seul tableau de bord.","nl":"Volledige installatie en configuratie van Home Assistant, het krachtigste opensourceplatform voor domotica. Bedien verlichting, verwarming, beveiliging en apparaten vanuit één dashboard."},"Home Assistant":{"en":"Home Assistant","fr":"Home Assistant","nl":"Home Assistant"},"Plug/Relay":{"en":"Plug/Relay","fr":"Prise / relais","nl":"Stekker / relais"},"Reolink":{"en":"Reolink","fr":"Reolink","nl":"Reolink"},"Smart TV":{"en":"Smart TV","fr":"Téléviseur connecté","nl":"Smart-tv"},"Configuration \u0026 Setup":{"en":"Configuration \u0026 Setup","fr":"Configuration et mise en service","nl":"Configuratie en installatie"},"Professional configuration of all smart devices — relays, plugs,connected devices, sensors. We set up automations, schedules, and dashboards tailored exactly to how you live.":{"en":"Professional configuration of all smart devices — relays, plugs,connected devices, sensors. We set up automations, schedules, and dashboards tailored exactly to how you live.","fr":"Configuration professionnelle de tous vos appareils connectés : relais, prises et capteurs. Nous créons des automatisations, des programmations et des tableaux de bord adaptés à votre mode de vie.","nl":"Professionele configuratie van al uw slimme apparaten: relais, stekkers, verbonden apparaten en sensoren. Wij stellen automatiseringen, tijdschema’s en dashboards in die precies bij uw dagelijkse leven passen."},"Automation":{"en":"Automation","fr":"Automatisation","nl":"Automatisering"},"Dashboards":{"en":"Dashboards","fr":"Tableaux de bord","nl":"Dashboards"},"Integrations":{"en":"Integrations","fr":"Intégrations","nl":"Integraties"},"Home Cybersecurity":{"en":"Home Cybersecurity","fr":"Cybersécurité à domicile","nl":"Cyberbeveiliging thuis"},"Secure your home network from the ground up. Network segmentation, firewall setup, device hardening, VPN access, and security reviews of your connected devices.":{"en":"Secure your home network from the ground up. Network segmentation, firewall setup, device hardening, VPN access, and security reviews of your connected devices.","fr":"Sécurisez votre réseau domestique de fond en comble : segmentation du réseau, configuration du pare-feu, renforcement de la sécurité des appareils, accès VPN et vérification de la sécurité de vos appareils connectés.","nl":"Beveilig uw thuisnetwerk van bij de basis. Netwerksegmentatie, firewallconfiguratie, extra beveiliging van apparaten, VPN-toegang en beveiligingscontroles van uw verbonden apparaten."},"Network Security":{"en":"Network Security","fr":"Sécurité réseau","nl":"Netwerkbeveiliging"},"VPN":{"en":"VPN","fr":"VPN","nl":"VPN"},"IoT Protection":{"en":"IoT Protection","fr":"Protection IoT","nl":"IoT-beveiliging"},"Firewall":{"en":"Firewall","fr":"Pare-feu","nl":"Firewall"},"Remote Access Setup":{"en":"Remote Access Setup","fr":"Configuration de l’accès à distance","nl":"Toegang op afstand instellen"},"Control your home from anywhere in the world — securely, without cloud subscriptions. We set up VPN so your smart home is always reachable, always private.":{"en":"Control your home from anywhere in the world — securely, without cloud subscriptions. We set up VPN so your smart home is always reachable, always private.","fr":"Contrôlez votre maison depuis n’importe où dans le monde, en toute sécurité et sans abonnement au cloud. Nous configurons un VPN pour que votre maison connectée reste toujours accessible, dans le respect de votre vie privée.","nl":"Bedien uw woning van overal ter wereld: veilig en zonder cloudabonnementen. Wij stellen een VPN in zodat uw slimme woning altijd bereikbaar blijft, met behoud van uw privacy."},"Remote Control":{"en":"Remote Control","fr":"Contrôle à distance","nl":"Bediening op afstand"},"Remote Assistance":{"en":"Remote Assistance","fr":"Assistance à distance","nl":"Ondersteuning op afstand"},"Ongoing remote support for any issue with your smart home or network. We troubleshoot, update, and maintain your system — without needing to visit every time.":{"en":"Ongoing remote support for any issue with your smart home or network. We troubleshoot, update, and maintain your system — without needing to visit every time.","fr":"Une assistance à distance continue pour tout problème lié à votre domotique ou à votre réseau. Nous diagnostiquons les pannes, mettons à jour et entretenons votre système sans devoir nous déplacer à chaque fois.","nl":"Doorlopende ondersteuning op afstand bij problemen met uw domotica of netwerk. Wij lossen problemen op, voeren updates uit en onderhouden uw systeem zonder dat voor elk probleem een bezoek nodig is."},"Support":{"en":"Support","fr":"Assistance","nl":"Ondersteuning"},"Maintenance":{"en":"Maintenance","fr":"Maintenance","nl":"Onderhoud"},"Updates":{"en":"Updates","fr":"Mises à jour","nl":"Updates"},"Consultancy \u0026 Advising":{"en":"Consultancy \u0026 Advising","fr":"Conseil et accompagnement","nl":"Advies en begeleiding"},"Not sure what you need? We offer expert consultations to help you plan your smart home or cybersecurity strategy — no commitment required, just honest advice.":{"en":"Not sure what you need? We offer expert consultations to help you plan your smart home or cybersecurity strategy — no commitment required, just honest advice.","fr":"Vous hésitez sur vos besoins ? Nous vous proposons un accompagnement spécialisé pour préparer votre projet domotique ou votre stratégie de cybersécurité, sans engagement et avec des conseils transparents.","nl":"Weet u niet precies wat u nodig hebt? Wij geven deskundig advies om uw domoticaproject of cyberbeveiligingsstrategie te plannen: vrijblijvend en met eerlijk advies."},"Strategy":{"en":"Strategy","fr":"Stratégie","nl":"Strategie"},"Planning":{"en":"Planning","fr":"Planification","nl":"Planning"},"Free Advice":{"en":"Free Advice","fr":"Conseils gratuits","nl":"Gratis advies"},"Why choose us":{"en":"Why choose us","fr":"Pourquoi nous choisir","nl":"Waarom voor ons kiezen"},"Why GuardMesh?":{"en":"Why GuardMesh?","fr":"Pourquoi GuardMesh ?","nl":"Waarom GuardMesh?"},"Local-first approach":{"en":"Local-first approach","fr":"Priorité au fonctionnement local","nl":"Lokale werking voorop"},"Your data stays in your home. We build systems that work without cloud dependency — faster, more private, always on.":{"en":"Your data stays in your home. We build systems that work without cloud dependency — faster, more private, always on.","fr":"Vos données restent chez vous. Nous concevons des systèmes qui fonctionnent sans dépendre du cloud : plus rapides, plus respectueux de votre vie privée et toujours opérationnels.","nl":"Uw gegevens blijven thuis. Wij bouwen systemen die zonder afhankelijkheid van de cloud werken: sneller, met meer privacy en altijd beschikbaar."},"Security by default":{"en":"Security by default","fr":"La sécurité dès le départ","nl":"Standaard beveiligd"},"Every installation is secured from day one. Network segmentation, strong authentication, encrypted remote access.":{"en":"Every installation is secured from day one. Network segmentation, strong authentication, encrypted remote access.","fr":"Chaque installation est sécurisée dès le premier jour : segmentation du réseau, authentification forte et accès à distance chiffré.","nl":"Elke installatie is vanaf dag één beveiligd, met netwerksegmentatie, sterke authenticatie en versleutelde toegang op afstand."},"Real support":{"en":"Real support","fr":"Une assistance humaine","nl":"Persoonlijke ondersteuning"},"You get a real person who knows your setup. Remote assistance available — we don't disappear after installation.":{"en":"You get a real person who knows your setup. Remote assistance available — we don't disappear after installation.","fr":"Vous échangez avec une personne qui connaît votre installation. Une assistance à distance est disponible : nous restons à vos côtés après l’installation.","nl":"U krijgt hulp van een echte persoon die uw installatie kent. Ondersteuning op afstand is beschikbaar: ook na de installatie blijven wij bereikbaar."},"No mandatory smart home subscriptions":{"en":"No mandatory smart home subscriptions","fr":"Aucun abonnement domotique obligatoire","nl":"Geen verplichte domotica-abonnementen"},"We build systems you own completely. No monthly fees to keep your own home running.":{"en":"We build systems you own completely. No monthly fees to keep your own home running.","fr":"Nous créons des systèmes qui vous appartiennent entièrement. Aucun frais mensuel pour faire fonctionner votre propre maison.","nl":"Wij bouwen systemen die volledig uw eigendom zijn. Geen maandelijkse kosten om uw eigen woning te laten werken."},"Local to Belgium":{"en":"Local to Belgium","fr":"Une entreprise locale en Belgique","nl":"Lokaal in België"},"Based in Sint-Pieters-Leeuw. We know the Belgian market, the regulations, and we can visit when needed.":{"en":"Based in Sint-Pieters-Leeuw. We know the Belgian market, the regulations, and we can visit when needed.","fr":"Basés à Sint-Pieters-Leeuw, nous connaissons le marché belge et sa réglementation, et nous pouvons intervenir sur place si nécessaire.","nl":"Wij zijn gevestigd in Sint-Pieters-Leeuw, kennen de Belgische markt en regelgeving en kunnen indien nodig ter plaatse komen."},"Fast \u0026 reliable":{"en":"Fast \u0026 reliable","fr":"Rapide et fiable","nl":"Snel en betrouwbaar"},"Local control means instant response. Your lights, security, and automations react in milliseconds — not seconds.":{"en":"Local control means instant response. Your lights, security, and automations react in milliseconds — not seconds.","fr":"Le contrôle local permet une réaction immédiate. Votre éclairage, votre sécurité et vos automatisations réagissent en millisecondes plutôt qu’en secondes.","nl":"Lokale bediening zorgt voor een onmiddellijke reactie. Uw verlichting, beveiliging en automatiseringen reageren in milliseconden in plaats van seconden."},"CCNA Certified":{"en":"CCNA Certified","fr":"Certifié CCNA","nl":"CCNA-gecertificeerd"},"Cisco Certified Network Associate — internationally recognised networking certification. Your network is configured by a verified professional, not a hobbyist.":{"en":"Cisco Certified Network Associate — internationally recognised networking certification. Your network is configured by a verified professional, not a hobbyist.","fr":"Cisco Certified Network Associate : une certification réseau reconnue à l’international. Votre réseau est configuré par un professionnel certifié, et non par un amateur.","nl":"Cisco Certified Network Associate: een internationaal erkend netwerkcertificaat. Uw netwerk wordt geconfigureerd door een gecertificeerde professional, niet door een hobbyist."},"Certified DPO":{"en":"Certified DPO","fr":"DPO certifié","nl":"Gecertificeerd DPO"},"Certified Data Protection Officer — GDPR compliant by design. Every installation respects your privacy and meets EU data protection regulations.":{"en":"Certified Data Protection Officer — GDPR compliant by design. Every installation respects your privacy and meets EU data protection regulations.","fr":"Délégué à la protection des données certifié : conformité au RGPD dès la conception. Chaque installation respecte votre vie privée et la réglementation européenne sur la protection des données.","nl":"Gecertificeerd functionaris voor gegevensbescherming: AVG-conform vanaf het ontwerp. Elke installatie respecteert uw privacy en voldoet aan de Europese regels voor gegevensbescherming."},"Our Projects":{"en":"Our Projects","fr":"Nos réalisations","nl":"Onze projecten"},"Real installations, real results, smart home automation and cybersecurity across Belgium and beyond.":{"en":"Real installations, real results, smart home automation and cybersecurity across Belgium and beyond.","fr":"Des installations réelles et des résultats concrets en domotique et en cybersécurité, en Belgique et au-delà.","nl":"Echte installaties en concrete resultaten in domotica en cyberbeveiliging, in België en daarbuiten."},"🔒 Network Security Setup":{"en":"🔒 Network Security Setup","fr":"🔒 Mise en place de la sécurité réseau","nl":"🔒 Netwerkbeveiliging instellen"},"Full network segmentation — IoT devices isolated from personal devices for maximum security.":{"en":"Full network segmentation — IoT devices isolated from personal devices for maximum security.","fr":"Segmentation complète du réseau : les appareils IoT sont isolés des appareils personnels pour une sécurité maximale.","nl":"Volledige netwerksegmentatie: IoT-apparaten zijn gescheiden van persoonlijke apparaten voor maximale beveiliging."},"🏠 Home Assistant Integration":{"en":"🏠 Home Assistant Integration","fr":"🏠 Intégration Home Assistant","nl":"🏠 Home Assistant-integratie"},"Cameras fully integrated with Home Assistant for motion detection, alerts, and local control.":{"en":"Cameras fully integrated with Home Assistant for motion detection, alerts, and local control.","fr":"Des caméras entièrement intégrées à Home Assistant pour la détection de mouvement, les alertes et le contrôle local.","nl":"Camera’s volledig geïntegreerd in Home Assistant voor bewegingsdetectie, meldingen en lokale bediening."},"Your browser does not support HTML5 video.":{"en":"Your browser does not support HTML5 video.","fr":"Votre navigateur ne prend pas en charge la vidéo HTML5.","nl":"Uw browser ondersteunt geen HTML5-video."},"GuardMesh — Project Presentation":{"en":"GuardMesh — Project Presentation","fr":"GuardMesh — Présentation de projets","nl":"GuardMesh — Projectpresentatie"},"Overview of our smart home and cybersecurity services for homes and businesses.":{"en":"Overview of our smart home and cybersecurity services for homes and businesses.","fr":"Présentation de nos services de domotique et de cybersécurité pour les particuliers et les entreprises.","nl":"Een overzicht van onze diensten voor domotica en cyberbeveiliging voor particulieren en bedrijven."},"Get in touch":{"en":"Get in touch","fr":"Contactez-nous","nl":"Neem contact op"},"Let's talk about your project":{"en":"Let's talk about your project","fr":"Parlons de votre projet","nl":"Laten we uw project bespreken"},"Whether you want to automate your home, secure your network, or just need advice — we're here to help. First consultation is always free.":{"en":"Whether you want to automate your home, secure your network, or just need advice — we're here to help. First consultation is always free.","fr":"Que vous souhaitiez automatiser votre maison, sécuriser votre réseau ou simplement obtenir des conseils, nous sommes là pour vous aider. Le premier entretien est toujours gratuit.","nl":"Wilt u uw woning automatiseren, uw netwerk beveiligen of gewoon advies? Wij helpen u graag. Het eerste gesprek is altijd gratis."},"Sint-Pieters-Leeuw, 1600 Belgium":{"en":"Sint-Pieters-Leeuw, 1600 Belgium","fr":"Sint-Pieters-Leeuw, 1600 Belgique","nl":"Sint-Pieters-Leeuw, 1600 België"},"Send us a message":{"en":"Send us a message","fr":"Envoyez-nous un message","nl":"Stuur ons een bericht"},"We will reply to you as soon as possible":{"en":"We will reply to you as soon as possible","fr":"Nous vous répondrons dans les plus brefs délais","nl":"Wij antwoorden zo snel mogelijk"},"Send message →":{"en":"Send message →","fr":"Envoyer le message →","nl":"Verstuur bericht →"},"Remote support via AnyDesk":{"en":"Remote support via AnyDesk","fr":"Assistance à distance via AnyDesk","nl":"Ondersteuning op afstand via AnyDesk"},"Download AnyDesk then contact us":{"en":"Download AnyDesk then contact us","fr":"Téléchargez AnyDesk, puis contactez-nous","nl":"Download AnyDesk en neem daarna contact met ons op"},"⚡ We typically respond within 2 hours during business hours":{"en":"⚡ We typically respond within 2 hours during business hours","fr":"⚡ Nous répondons généralement dans les 2 heures pendant les heures de bureau","nl":"⚡ Tijdens de kantooruren antwoorden wij doorgaans binnen 2 uur"},"GuardMesh.":{"en":"GuardMesh.","fr":"GuardMesh.","nl":"GuardMesh."},"Smart Home · Cybersecurity · Remote Automation — Sint-Pieters-Leeuw, Belgium":{"en":"Smart Home · Cybersecurity · Remote Automation — Sint-Pieters-Leeuw, Belgium","fr":"Domotique · Cybersécurité · Automatisation à distance — Sint-Pieters-Leeuw, Belgique","nl":"Domotica · Cyberbeveiliging · Automatisering op afstand — Sint-Pieters-Leeuw, België"},"⚖️ GDPR Compliant":{"en":"⚖️ GDPR Compliant","fr":"⚖️ Conforme au RGPD","nl":"⚖️ AVG-conform"},"© 2026 GuardMesh. Built with ❤️ in":{"en":"© 2026 GuardMesh. Built with ❤️ in","fr":"© 2026 GuardMesh. Créé avec ❤️ en","nl":"© 2026 GuardMesh. Gemaakt met ❤️ in"},"Belgium":{"en":"Belgium","fr":"Belgique","nl":"België"},"GuardMesh founder":{"en":"GuardMesh founder","fr":"Fondateur de GuardMesh","nl":"Oprichter van GuardMesh"},"Network Security Setup":{"en":"Network Security Setup","fr":"Mise en place de la sécurité réseau","nl":"Netwerkbeveiliging instellen"},"Network project photo 1":{"en":"Network project photo 1","fr":"Projet réseau — photo 1","nl":"Netwerkproject — foto 1"},"Network project photo 2":{"en":"Network project photo 2","fr":"Projet réseau — photo 2","nl":"Netwerkproject — foto 2"},"Home Assistant Integration":{"en":"Home Assistant Integration","fr":"Intégration Home Assistant","nl":"Home Assistant-integratie"},"Home Assistant Dashboard":{"en":"Home Assistant Dashboard","fr":"Tableau de bord Home Assistant","nl":"Home Assistant-dashboard"},"Your name":{"en":"Your name","fr":"Votre nom","nl":"Uw naam"},"Your email":{"en":"Your email","fr":"Votre adresse e-mail","nl":"Uw e-mailadres"},"Type your message here...":{"en":"Type your message here...","fr":"Saisissez votre message ici…","nl":"Typ hier uw bericht…"},"Great job! Your home security looks solid. Contact GuardMesh for a professional audit to confirm everything is properly configured.":{"en":"Great job! Your home security looks solid. Contact GuardMesh for a professional audit to confirm everything is properly configured.","fr":"Bravo ! La sécurité de votre maison semble solide. Contactez GuardMesh pour un audit professionnel afin de confirmer que tout est correctement configuré.","nl":"Goed gedaan! De beveiliging van uw woning lijkt goed op orde. Contacteer GuardMesh voor een professionele audit om te bevestigen dat alles correct is ingesteld."},"You have good security habits but a few gaps remain. GuardMesh can help you close them completely.":{"en":"You have good security habits but a few gaps remain. GuardMesh can help you close them completely.","fr":"Vous avez de bonnes habitudes de sécurité, mais quelques lacunes subsistent. GuardMesh peut vous aider à les corriger entièrement.","nl":"U hebt goede beveiligingsgewoonten, maar er blijven enkele tekortkomingen. GuardMesh kan u helpen om die volledig aan te pakken."},"Several risks detected. Your home network and personal data may be exposed. GuardMesh can fix these gaps quickly.":{"en":"Several risks detected. Your home network and personal data may be exposed. GuardMesh can fix these gaps quickly.","fr":"Plusieurs risques ont été détectés. Votre réseau domestique et vos données personnelles peuvent être exposés. GuardMesh peut corriger ces lacunes rapidement.","nl":"Er zijn meerdere risico’s vastgesteld. Uw thuisnetwerk en persoonsgegevens kunnen blootgesteld zijn. GuardMesh kan deze tekortkomingen snel aanpakken."},"Your home has significant security risks. If you answered \"No\" to several of these, your data and devices may be exposed. GuardMesh can help you fix every gap.":{"en":"Your home has significant security risks. If you answered \"No\" to several of these, your data and devices may be exposed. GuardMesh can help you fix every gap.","fr":"Votre maison présente des risques de sécurité importants. Si vous avez répondu « Non » à plusieurs affirmations, vos données et vos appareils peuvent être exposés. GuardMesh peut vous aider à corriger chaque lacune.","nl":"Uw woning vertoont aanzienlijke beveiligingsrisico’s. Als u bij meerdere uitspraken ‘Nee’ hebt geantwoord, kunnen uw gegevens en apparaten blootgesteld zijn. GuardMesh kan u helpen om elke tekortkoming aan te pakken."},"Language":{"en":"Language","fr":"Langue","nl":"Taal"},"Open or close the menu":{"en":"Open or close the menu","fr":"Ouvrir ou fermer le menu","nl":"Menu openen of sluiten"},"Previous photo":{"en":"Previous photo","fr":"Photo précédente","nl":"Vorige foto"},"Next photo":{"en":"Next photo","fr":"Photo suivante","nl":"Volgende foto"},"Cybersecurity":{"en":"Cybersecurity","fr":"Cybersécurité","nl":"Cyberbeveiliging"},"IT Consulting":{"en":"IT Consulting","fr":"Conseil informatique","nl":"IT-advies"},"Explore IT consulting":{"en":"Explore IT consulting","fr":"Découvrir le conseil informatique","nl":"Ontdek ons IT-advies"},"Practical network advice, configuration and upgrade planning for home offices and small businesses.":{"en":"Practical network advice, configuration and upgrade planning for home offices and small businesses.","fr":"Des conseils réseau, une configuration adaptée et une planification des améliorations pour les bureaux à domicile et les petites entreprises.","nl":"Praktisch netwerkadvies, configuratie en een upgradeplan voor thuiskantoren en kleine bedrijven."},"Practical advice. A clearer IT plan.":{"en":"Practical advice. A clearer IT plan.","fr":"Des conseils pratiques. Un projet informatique plus clair.","nl":"Praktisch advies. Een duidelijk IT-plan."},"Advice, configuration and practical support for your network and connected devices.":{"en":"Advice, configuration and practical support for your network and connected devices.","fr":"Des conseils, de la configuration et une assistance pratique pour votre réseau et vos appareils connectés.","nl":"Advies, configuratie en praktische ondersteuning voor uw netwerk en verbonden apparaten."},"Network \u0026 Wi-Fi Advice":{"en":"Network \u0026 Wi-Fi Advice","fr":"Conseil réseau et Wi-Fi","nl":"Netwerk- en wifiadvies"},"Plan or improve a wired and wireless network that suits your home office or small business.":{"en":"Plan or improve a wired and wireless network that suits your home office or small business.","fr":"Planifiez ou améliorez un réseau filaire et sans fil adapté à votre bureau à domicile ou à votre petite entreprise.","nl":"Plan of verbeter een bekabeld en draadloos netwerk dat past bij uw thuiskantoor of kleine bedrijf."},"Device Setup \u0026 Configuration":{"en":"Device Setup \u0026 Configuration","fr":"Installation et configuration des appareils","nl":"Apparaten instellen en configureren"},"Get help configuring routers, access points and connected devices to suit your needs.":{"en":"Get help configuring routers, access points and connected devices to suit your needs.","fr":"Faites-vous accompagner pour configurer vos routeurs, points d’accès et appareils connectés selon vos besoins.","nl":"Krijg hulp bij het instellen van routers, toegangspunten en verbonden apparaten volgens uw behoeften."},"Troubleshooting \u0026 Remote Assistance":{"en":"Troubleshooting \u0026 Remote Assistance","fr":"Dépannage et assistance à distance","nl":"Problemen oplossen en ondersteuning op afstand"},"Identify connectivity and configuration problems and get practical help on site or remotely.":{"en":"Identify connectivity and configuration problems and get practical help on site or remotely.","fr":"Identifiez les problèmes de connexion et de configuration et bénéficiez d’une aide pratique sur place ou à distance.","nl":"Breng verbindings- en configuratieproblemen in kaart en krijg praktische hulp ter plaatse of op afstand."},"IT Planning \u0026 Upgrades":{"en":"IT Planning \u0026 Upgrades","fr":"Planification et évolution informatique","nl":"IT-planning en upgrades"},"Review your current setup and choose suitable equipment and improvements with clear priorities.":{"en":"Review your current setup and choose suitable equipment and improvements with clear priorities.","fr":"Faites le point sur votre installation et choisissez les équipements et améliorations adaptés, selon des priorités claires.","nl":"Bekijk uw huidige opstelling en kies geschikte apparatuur en verbeteringen met duidelijke prioriteiten."},"Discuss your IT needs":{"en":"Discuss your IT needs","fr":"Parlons de vos besoins informatiques","nl":"Bespreek uw IT-behoeften"},"Smart Home · Cybersecurity · IT Consulting · Belgium":{"en":"Smart Home · Cybersecurity · IT Consulting · Belgium","fr":"Domotique · Cybersécurité · Conseil informatique · Belgique","nl":"Domotica · Cyberbeveiliging · IT-advies · België"},"Smart Home · Cybersecurity · IT Consulting — Sint-Pieters-Leeuw, Belgium":{"en":"Smart Home · Cybersecurity · IT Consulting — Sint-Pieters-Leeuw, Belgium","fr":"Domotique · Cybersécurité · Conseil informatique — Sint-Pieters-Leeuw, Belgique","nl":"Domotica · Cyberbeveiliging · IT-advies — Sint-Pieters-Leeuw, België"},"IT infrastructure that supports your business.":{"en":"IT infrastructure that supports your business.","fr":"Une infrastructure informatique au service de votre entreprise.","nl":"IT-infrastructuur die uw bedrijf ondersteunt."},"12+ years of hands-on experience in IT infrastructure and systems, supporting reliable, secure business operations. Practical support for servers, Microsoft 365, virtualization, backups, devices and multi-site networks.":{"en":"12+ years of hands-on experience in IT infrastructure and systems, supporting reliable, secure business operations. Practical support for servers, Microsoft 365, virtualization, backups, devices and multi-site networks.","fr":"Plus de 12 ans d’expérience pratique en infrastructure et systèmes informatiques, au service d’activités fiables et sécurisées. Un accompagnement concret pour vos serveurs, Microsoft 365, la virtualisation, les sauvegardes, les appareils et les réseaux multisites.","nl":"Meer dan 12 jaar praktijkervaring met IT-infrastructuur en systemen ter ondersteuning van een betrouwbare en veilige bedrijfswerking. Praktische ondersteuning voor servers, Microsoft 365, virtualisatie, back-ups, apparaten en netwerken op meerdere locaties."},"Business IT infrastructure support across servers, Microsoft 365, virtualization, backups, devices and multi-site networks.":{"en":"Business IT infrastructure support across servers, Microsoft 365, virtualization, backups, devices and multi-site networks.","fr":"Un accompagnement en infrastructure informatique pour les entreprises : serveurs, Microsoft 365, virtualisation, sauvegardes, appareils et réseaux multisites.","nl":"Ondersteuning voor zakelijke IT-infrastructuur: servers, Microsoft 365, virtualisatie, back-ups, apparaten en netwerken op meerdere locaties."},"GuardMesh is a Belgium-based technology consultancy specialising in IT infrastructure, cybersecurity and smart home automation. We help businesses maintain reliable systems and support homeowners with secure, privacy-focused automation.":{"en":"GuardMesh is a Belgium-based technology consultancy specialising in IT infrastructure, cybersecurity and smart home automation. We help businesses maintain reliable systems and support homeowners with secure, privacy-focused automation.","fr":"GuardMesh est un bureau de conseil technologique belge spécialisé en infrastructure informatique, en cybersécurité et en domotique. Nous aidons les entreprises à maintenir des systèmes fiables et accompagnons les particuliers avec une domotique sécurisée et respectueuse de leur vie privée.","nl":"GuardMesh is een Belgisch IT-adviesbureau gespecialiseerd in IT-infrastructuur, cyberbeveiliging en domotica. Wij helpen bedrijven hun systemen betrouwbaar te houden en ondersteunen particulieren met veilige domotica die hun privacy respecteert."},"IT Infrastructure · Smart Home · Cybersecurity":{"en":"IT Infrastructure · Smart Home · Cybersecurity","fr":"Infrastructure informatique · Domotique · Cybersécurité","nl":"IT-infrastructuur · Domotica · Cyberbeveiliging"},"Servers \u0026 Virtualization":{"en":"Servers \u0026 Virtualization","fr":"Serveurs et virtualisation","nl":"Servers en virtualisatie"},"Administration and troubleshooting for Windows Server, Active Directory, VMware, Linux and Citrix environments.":{"en":"Administration and troubleshooting for Windows Server, Active Directory, VMware, Linux and Citrix environments.","fr":"Administration et dépannage des environnements Windows Server, Active Directory, VMware, Linux et Citrix.","nl":"Beheer en probleemoplossing voor omgevingen met Windows Server, Active Directory, VMware, Linux en Citrix."},"Microsoft 365 \u0026 SharePoint":{"en":"Microsoft 365 \u0026 SharePoint","fr":"Microsoft 365 et SharePoint","nl":"Microsoft 365 en SharePoint"},"User and access administration, SharePoint Online support and day-to-day Microsoft 365 assistance.":{"en":"User and access administration, SharePoint Online support and day-to-day Microsoft 365 assistance.","fr":"Gestion des utilisateurs et des accès, accompagnement sur SharePoint Online et assistance quotidienne pour Microsoft 365.","nl":"Gebruikers- en toegangsbeheer, ondersteuning voor SharePoint Online en dagelijkse hulp bij Microsoft 365."},"Backup Operations":{"en":"Backup Operations","fr":"Gestion des sauvegardes","nl":"Back-upbeheer"},"Operational support for Veeam backups, including administration and troubleshooting.":{"en":"Operational support for Veeam backups, including administration and troubleshooting.","fr":"Assistance opérationnelle pour les sauvegardes Veeam, comprenant leur administration et leur dépannage.","nl":"Operationele ondersteuning voor Veeam-back-ups, inclusief beheer en probleemoplossing."},"Networks \u0026 Multi-site Support":{"en":"Networks \u0026 Multi-site Support","fr":"Réseaux et assistance multisite","nl":"Netwerken en ondersteuning op meerdere locaties"},"Support for wired and wireless networks, infrastructure troubleshooting and IT operations across multiple sites.":{"en":"Support for wired and wireless networks, infrastructure troubleshooting and IT operations across multiple sites.","fr":"Assistance pour les réseaux filaires et sans fil, dépannage de l’infrastructure et soutien aux opérations informatiques sur plusieurs sites.","nl":"Ondersteuning voor bekabelde en draadloze netwerken, infrastructuurproblemen en IT-activiteiten op meerdere locaties."},"Devices \u0026 User Support":{"en":"Devices \u0026 User Support","fr":"Appareils et assistance aux utilisateurs","nl":"Apparaten en gebruikersondersteuning"},"Device deployment and support for Windows, macOS and Linux, plus user account setup and offboarding.":{"en":"Device deployment and support for Windows, macOS and Linux, plus user account setup and offboarding.","fr":"Déploiement et assistance pour les appareils Windows, macOS et Linux, ainsi que création des comptes utilisateurs et gestion des départs.","nl":"Uitrol en ondersteuning van Windows-, macOS- en Linux-apparaten, plus het aanmaken van gebruikersaccounts en de afhandeling bij uitdiensttreding."},"Business Platforms \u0026 Communications":{"en":"Business Platforms \u0026 Communications","fr":"Plateformes et communications professionnelles","nl":"Bedrijfsplatformen en communicatie"},"Support for Jira Server and Cloud, Yealink VoIP and Polycom/Cisco video conferencing systems.":{"en":"Support for Jira Server and Cloud, Yealink VoIP and Polycom/Cisco video conferencing systems.","fr":"Assistance pour Jira Server et Cloud, la téléphonie VoIP Yealink et les systèmes de visioconférence Polycom/Cisco.","nl":"Ondersteuning voor Jira Server en Cloud, Yealink-VoIP en videoconferentiesystemen van Polycom/Cisco."},"Choose the service you need.":{"en":"Choose the service you need.","fr":"Choisissez le service dont vous avez besoin.","nl":"Kies de dienst die u nodig hebt."},"Three areas of expertise, with a clear offer for each.":{"en":"Three areas of expertise, with a clear offer for each.","fr":"Trois domaines d’expertise, chacun avec une offre claire.","nl":"Drie expertisegebieden, elk met een duidelijk aanbod."},"Local control, tailored automations and simple dashboards for your home.":{"en":"Local control, tailored automations and simple dashboards for your home.","fr":"Un contrôle local, des automatisations adaptées et des tableaux de bord simples pour votre maison.","nl":"Lokale bediening, automatiseringen op maat en eenvoudige dashboards voor uw woning."},"Assess and improve the security of your home network, accounts and connected devices.":{"en":"Assess and improve the security of your home network, accounts and connected devices.","fr":"Évaluez et améliorez la sécurité de votre réseau domestique, de vos comptes et de vos appareils connectés.","nl":"Beoordeel en verbeter de beveiliging van uw thuisnetwerk, accounts en verbonden apparaten."},"Business infrastructure, Microsoft 365, servers, backups and user support.":{"en":"Business infrastructure, Microsoft 365, servers, backups and user support.","fr":"Infrastructure d’entreprise, Microsoft 365, serveurs, sauvegardes et assistance aux utilisateurs.","nl":"Zakelijke infrastructuur, Microsoft 365, servers, back-ups en gebruikersondersteuning."},"View smart home services":{"en":"View smart home services","fr":"Voir les services de domotique","nl":"Bekijk onze domoticadiensten"},"View cybersecurity services":{"en":"View cybersecurity services","fr":"Voir les services de cybersécurité","nl":"Bekijk onze diensten voor cyberbeveiliging"},"View IT consulting services":{"en":"View IT consulting services","fr":"Voir les services de conseil informatique","nl":"Bekijk onze IT-adviesdiensten"},"Your home, working the way you want.":{"en":"Your home, working the way you want.","fr":"Votre maison, adaptée à votre quotidien.","nl":"Uw woning, afgestemd op uw dagelijks leven."},"Home Assistant installation, tailored automations, clear dashboards and ongoing support for your smart home.":{"en":"Home Assistant installation, tailored automations, clear dashboards and ongoing support for your smart home.","fr":"Installation de Home Assistant, automatisations adaptées, tableaux de bord clairs et assistance continue pour votre maison connectée.","nl":"Installatie van Home Assistant, automatiseringen op maat, overzichtelijke dashboards en doorlopende ondersteuning voor uw slimme woning."},"Home Assistant Installation":{"en":"Home Assistant Installation","fr":"Installation de Home Assistant","nl":"Home Assistant installeren"},"Install and configure Home Assistant to bring your lighting, heating and connected devices together in one system.":{"en":"Install and configure Home Assistant to bring your lighting, heating and connected devices together in one system.","fr":"Installez et configurez Home Assistant pour réunir votre éclairage, votre chauffage et vos appareils connectés dans un seul système.","nl":"Laat Home Assistant installeren en configureren om verlichting, verwarming en verbonden apparaten in één systeem samen te brengen."},"Automations \u0026 Schedules":{"en":"Automations \u0026 Schedules","fr":"Automatisations et programmations","nl":"Automatiseringen en tijdschema’s"},"Create routines and schedules for lights, heating, sensors and connected devices, tailored to how you live.":{"en":"Create routines and schedules for lights, heating, sensors and connected devices, tailored to how you live.","fr":"Créez des routines et des programmations pour l’éclairage, le chauffage, les capteurs et les appareils connectés, selon votre mode de vie.","nl":"Stel routines en tijdschema’s in voor verlichting, verwarming, sensoren en verbonden apparaten, afgestemd op uw dagelijks leven."},"Dashboards \u0026 Device Integration":{"en":"Dashboards \u0026 Device Integration","fr":"Tableaux de bord et intégration des appareils","nl":"Dashboards en apparaatintegratie"},"Bring compatible cameras, switches, sensors and appliances into clear dashboards for day-to-day control.":{"en":"Bring compatible cameras, switches, sensors and appliances into clear dashboards for day-to-day control.","fr":"Rassemblez les caméras, interrupteurs, capteurs et appareils compatibles dans des tableaux de bord clairs pour le contrôle quotidien.","nl":"Breng compatibele camera’s, schakelaars, sensoren en toestellen samen in overzichtelijke dashboards voor dagelijks gebruik."},"Smart Home Maintenance":{"en":"Smart Home Maintenance","fr":"Maintenance domotique","nl":"Onderhoud van uw domotica"},"Troubleshooting, updates and remote assistance for your Home Assistant setup and connected devices.":{"en":"Troubleshooting, updates and remote assistance for your Home Assistant setup and connected devices.","fr":"Dépannage, mises à jour et assistance à distance pour votre installation Home Assistant et vos appareils connectés.","nl":"Probleemoplossing, updates en ondersteuning op afstand voor uw Home Assistant-installatie en verbonden apparaten."},"Discuss your smart home":{"en":"Discuss your smart home","fr":"Parlons de votre projet domotique","nl":"Bespreek uw domoticaproject"},"← All services":{"en":"← All services","fr":"← Tous les services","nl":"← Alle diensten"},"Practical protection for your connected home.":{"en":"Practical protection for your connected home.","fr":"Une protection concrète pour votre maison connectée.","nl":"Praktische bescherming voor uw verbonden woning."},"Review your home network, strengthen account and device security, and set up private remote access. Explore the assessment and annual plans below.":{"en":"Review your home network, strengthen account and device security, and set up private remote access. Explore the assessment and annual plans below.","fr":"Faites vérifier votre réseau domestique, renforcez la sécurité des comptes et des appareils et configurez un accès à distance privé. Découvrez l’évaluation et les formules annuelles ci-dessous.","nl":"Laat uw thuisnetwerk nakijken, versterk de beveiliging van accounts en apparaten en stel privétoegang op afstand in. Bekijk hieronder de beoordeling en jaarformules."},"Home Network Security":{"en":"Home Network Security","fr":"Sécurité du réseau domestique","nl":"Beveiliging van uw thuisnetwerk"},"Account \u0026 Device Protection":{"en":"Account \u0026 Device Protection","fr":"Protection des comptes et des appareils","nl":"Bescherming van accounts en apparaten"},"Help with multifactor authentication, password managers, device settings and backup security guidance.":{"en":"Help with multifactor authentication, password managers, device settings and backup security guidance.","fr":"Accompagnement pour l’authentification multifacteur, les gestionnaires de mots de passe, les paramètres des appareils et la sécurité des sauvegardes.","nl":"Hulp bij multifactorauthenticatie, wachtwoordbeheerders, apparaatinstellingen en advies over de beveiliging van back-ups."},"Private Remote Access":{"en":"Private Remote Access","fr":"Accès à distance privé","nl":"Privétoegang op afstand"},"View assessment \u0026 pricing":{"en":"View assessment \u0026 pricing","fr":"Voir l’évaluation et les tarifs","nl":"Bekijk de beoordeling en tarieven"},"Check your home security":{"en":"Check your home security","fr":"Évaluer la sécurité de votre maison","nl":"Controleer de beveiliging van uw woning"},"Cybersecurity for your home and business.":{"en":"Cybersecurity for your home and business.","fr":"La cybersécurité pour votre maison et votre entreprise.","nl":"Cyberbeveiliging voor uw woning en uw bedrijf."},"Choose a business security assessment or explore home network protection. Clear scope, practical recommendations and pricing agreed before booking.":{"en":"Choose a business security assessment or explore home network protection. Clear scope, practical recommendations and pricing agreed before booking.","fr":"Choisissez une évaluation de sécurité pour votre entreprise ou découvrez la protection du réseau domestique. Un périmètre clair, des recommandations pratiques et un prix convenu avant la réservation.","nl":"Kies een beveiligingsbeoordeling voor uw bedrijf of ontdek de bescherming van uw thuisnetwerk. Een duidelijke scope, praktische aanbevelingen en een prijs die vóór de boeking wordt afgesproken."},"Business assessments":{"en":"Business assessments","fr":"Évaluations pour entreprises","nl":"Beoordelingen voor bedrijven"},"Home protection plans":{"en":"Home protection plans","fr":"Formules de protection à domicile","nl":"Beschermingsformules voor thuis"},"Business Cybersecurity Assessments":{"en":"Business Cybersecurity Assessments","fr":"Évaluations de cybersécurité pour entreprises","nl":"Beoordelingen van cyberbeveiliging voor bedrijven"},"Clear pricing. One-off assessments. No subscription or automatic renewal.":{"en":"Clear pricing. One-off assessments. No subscription or automatic renewal.","fr":"Des tarifs clairs. Des évaluations ponctuelles. Aucun abonnement ni renouvellement automatique.","nl":"Duidelijke tarieven. Eenmalige beoordelingen. Geen abonnement of automatische verlenging."},"BASIC | Security Quick Check":{"en":"BASIC | Security Quick Check","fr":"BASIC | Bilan de sécurité rapide","nl":"BASIC | Snelle beveiligingscheck"},"STANDARD | Business Security Health Check":{"en":"STANDARD | Business Security Health Check","fr":"STANDARD | Bilan de sécurité pour entreprise","nl":"STANDARD | Beveiligingscheck voor bedrijven"},"Excluding VAT":{"en":"Excluding VAT","fr":"Hors TVA","nl":"Exclusief btw"},"One-off assessment":{"en":"One-off assessment","fr":"Évaluation ponctuelle","nl":"Eenmalige beoordeling"},"For freelancers and very small businesses with 1–3 users.":{"en":"For freelancers and very small businesses with 1–3 users.","fr":"Pour les indépendants et les très petites entreprises comptant 1 à 3 utilisateurs.","nl":"Voor zelfstandigen en zeer kleine bedrijven met 1 tot 3 gebruikers."},"For small businesses with up to 10 users at one location.":{"en":"For small businesses with up to 10 users at one location.","fr":"Pour les petites entreprises comptant jusqu’à 10 utilisateurs sur un seul site.","nl":"Voor kleine bedrijven met maximaal 10 gebruikers op één locatie."},"A focused review of your business account and device security, with written findings and prioritized recommendations.":{"en":"A focused review of your business account and device security, with written findings and prioritized recommendations.","fr":"Un examen ciblé de la sécurité des comptes et des appareils de votre entreprise, avec un rapport écrit et des recommandations classées par priorité.","nl":"Een gerichte controle van de beveiliging van uw zakelijke accounts en apparaten, met schriftelijke bevindingen en aanbevelingen op volgorde van prioriteit."},"A broader review of your business IT security and relevant GDPR security safeguards, with a written report and a prioritized improvement plan.":{"en":"A broader review of your business IT security and relevant GDPR security safeguards, with a written report and a prioritized improvement plan.","fr":"Un examen plus large de votre sécurité informatique et des mesures de sécurité pertinentes liées au RGPD, avec un rapport écrit et un plan d’amélioration classé par priorité.","nl":"Een bredere controle van uw zakelijke IT-beveiliging en relevante AVG-beveiligingsmaatregelen, met een schriftelijk rapport en een verbeterplan op volgorde van prioriteit."},"Delivered remotely.":{"en":"Delivered remotely.","fr":"À distance.","nl":"Uitvoering op afstand."},"Delivered remotely or on-site, as agreed.":{"en":"Delivered remotely or on-site, as agreed.","fr":"À distance ou sur place, selon accord.","nl":"Uitvoering op afstand of ter plaatse, zoals afgesproken."},"Request a Quick Check":{"en":"Request a Quick Check","fr":"Demander un bilan rapide","nl":"Vraag een snelle beveiligingscheck aan"},"Request a Business Health Check":{"en":"Request a Business Health Check","fr":"Demander un bilan pour entreprise","nl":"Vraag een beveiligingscheck voor uw bedrijf aan"},"Clear terms before you book":{"en":"Clear terms before you book","fr":"Des conditions claires avant de réserver","nl":"Duidelijke voorwaarden vóór uw boeking"},"A one-off cybersecurity assessment with written findings and practical recommendations.":{"en":"A one-off cybersecurity assessment with written findings and practical recommendations.","fr":"Une évaluation ponctuelle de cybersécurité, avec un rapport écrit et des recommandations pratiques.","nl":"Een eenmalige beoordeling van uw cyberbeveiliging, met schriftelijke bevindingen en praktische aanbevelingen."},"Your assessment scope, deliverables and total cost are agreed in writing before booking. Additional work requires a separate quote and your approval.":{"en":"Your assessment scope, deliverables and total cost are agreed in writing before booking. Additional work requires a separate quote and your approval.","fr":"Le périmètre de l’évaluation, les livrables et le coût total sont convenus par écrit avant la réservation. Tout travail supplémentaire nécessite un devis distinct et votre accord.","nl":"De scope, opleveringen en totale kosten van uw beoordeling worden vóór de boeking schriftelijk afgesproken. Voor extra werk zijn een afzonderlijke offerte en uw toestemming nodig."},"No subscription, automatic renewal or recurring charges.":{"en":"No subscription, automatic renewal or recurring charges.","fr":"Aucun abonnement, renouvellement automatique ou frais récurrents.","nl":"Geen abonnement, automatische verlenging of terugkerende kosten."},"The detailed assessment agreement is provided before you confirm your booking.":{"en":"The detailed assessment agreement is provided before you confirm your booking.","fr":"L’accord détaillé relatif à l’évaluation vous est remis avant la confirmation de votre réservation.","nl":"U ontvangt de gedetailleerde beoordelingsovereenkomst voordat u uw boeking bevestigt."},"Business customers · Prices excluding VAT":{"en":"Business customers · Prices excluding VAT","fr":"Clientèle professionnelle · Prix hors TVA","nl":"Zakelijke klanten · Prijzen exclusief btw"},"For your home: start with a one-time network assessment or choose an optional annual protection plan. Annual home plans are separate from the one-off business assessments above.":{"en":"For your home: start with a one-time network assessment or choose an optional annual protection plan. Annual home plans are separate from the one-off business assessments above.","fr":"Pour votre maison : commencez par une évaluation ponctuelle du réseau ou choisissez une formule annuelle de protection facultative. Ces formules sont distinctes des évaluations ponctuelles pour entreprises présentées ci-dessus.","nl":"Voor uw woning: start met een eenmalige netwerkbeoordeling of kies een optionele jaarlijkse beschermingsformule. Deze formules staan los van de eenmalige bedrijfsbeoordelingen hierboven."}},"description":{"en":"GuardMesh — IT infrastructure consulting, Microsoft 365, VMware, backups, cybersecurity and smart home automation in Sint-Pieters-Leeuw and Brussels, Belgium.","fr":"GuardMesh — Conseil en infrastructure informatique, Microsoft 365, VMware, sauvegardes, cybersécurité et domotique à Sint-Pieters-Leeuw et Bruxelles, en Belgique.","nl":"GuardMesh — Advies over IT-infrastructuur, Microsoft 365, VMware, back-ups, cyberbeveiliging en domotica in Sint-Pieters-Leeuw en Brussel, België."},"title":{"en":"GuardMesh — Smart Home, Cybersecurity \u0026 IT Consulting Belgium","fr":"GuardMesh — Domotique, cybersécurité et conseil informatique en Belgique","nl":"GuardMesh — Domotica, cyberbeveiliging en IT-advies in België"},"scoreSuffix":{"en":" secured","fr":" points sécurisés","nl":" beveiligd"},"initialAlert":"If you answered \"No\" or \"I'm not sure\" to any of these questions, your home network and personal data may be exposed to unnecessary risks. GuardMesh can help you fix every one of these gaps."}</script><script id="gm-language-runtime">
+  const gmLanguageData = JSON.parse(document.getElementById('gm-language-data').textContent);
+  const gmSupportedLanguages = ['en', 'fr', 'nl'];
+  const gmLanguageSelect = document.getElementById('gm-language');
+  const gmTextBindings = [];
+  const gmAttributeBindings = [];
+  const gmWalker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+  let gmNode;
+  while ((gmNode = gmWalker.nextNode())) {
+    const parent = gmNode.parentElement;
+    if (!parent || parent.closest('script, style, option, #gm-score-txt, #gm-alert-txt')) continue;
+    const original = gmNode.nodeValue;
+    const key = original.trim().replace(/\s+/g, ' ');
+    if (gmLanguageData.strings[key]) {
+      gmTextBindings.push({node:gmNode, key, before:original.match(/^\s*/)[0], after:original.match(/\s*$/)[0]});
+    }
+  }
+  document.querySelectorAll('[alt], [title], [placeholder], [aria-label]').forEach(element => {
+    ['alt', 'title', 'placeholder', 'aria-label'].forEach(attribute => {
+      const key = element.getAttribute(attribute);
+      if (key && gmLanguageData.strings[key]) gmAttributeBindings.push({element, attribute, key});
+    });
+  });
+  function gmText(key) {
+    const entry = gmLanguageData.strings[key];
+    return entry ? (entry[document.documentElement.lang] || entry.en || key) : key;
+  }
+  function gmSetLanguage(language, remember) {
+    if (!gmSupportedLanguages.includes(language)) return;
+    document.documentElement.lang = language;
+    gmLanguageSelect.value = language;
+    gmTextBindings.forEach(binding => {
+      binding.node.nodeValue = binding.before + gmText(binding.key) + binding.after;
+    });
+    gmAttributeBindings.forEach(binding => {
+      binding.element.setAttribute(binding.attribute, gmText(binding.key));
+    });
+    document.title = gmLanguageData.title[language];
+    document.querySelector('meta[name="description"]').setAttribute('content', gmLanguageData.description[language]);
+    gmUpdateScore();
+    if (remember) {
+      try { localStorage.setItem('guardmesh-language', language); } catch (error) { /* Storage can be disabled. */ }
+    }
+  }
+  gmLanguageSelect.addEventListener('change', event => gmSetLanguage(event.target.value, true));
+  let gmInitialLanguage = 'en';
+  try {
+    const saved = localStorage.getItem('guardmesh-language');
+    if (gmSupportedLanguages.includes(saved)) gmInitialLanguage = saved;
+  } catch (error) { /* The language dropdown still works without storage. */ }
+  gmSetLanguage(gmInitialLanguage, false);
+</script></body>
+</html>
